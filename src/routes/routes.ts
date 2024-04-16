@@ -1,0 +1,21 @@
+export const routes = {
+    LOGIN: "/",
+    SIGNUP: "/signup",
+    DASHBOARD: "/dashboard",
+    FIELD_AGENTS_REPORT: "/field-agents-report",
+    PHONE_AGENTS_REPORT: "/phone-agents-report",
+    AU_FIELD_AGENTS_REPORT: "/au-field-agents-report",
+    AU_PHONE_AGENTS_REPORT: "/au-phone-agents-report",
+    BANK_DETAILS:"/bank-details",
+    FIELD_AGENT_DETAILS:"/field-agent-details",
+    REGISTER_FIELD_AGENT:"/register-field-agent",
+    PHONE_AGENT_DETAILS:"/phone-agent-details",
+    REGISTER_PHONE_AGENT:"/register-phone-agent",
+    AU_AGENT_DETAILS:"/au-agent-details",
+    REGISTER_AU_AGENT:"/register-au-agent",
+    CALCULATOR_MATRIX:"/calculator-matrix",
+    CALCULATOR_DATA:"/calculator-data",
+    CALCULATOR_GRAPH:"/calculator-graph",
+    TARGETS:"/targets",
+    MANUAL_DD:"/manual-dd"
+}

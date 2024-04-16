@@ -1,0 +1,17 @@
+.active-class, .non-active-class {
+  text-decoration: none;
+  color: black;
+}
+
+
+.active {
+  border-left: 4px solid #00F500 !important;
+  background-color: rgba(0, 0, 0, 0.08) !important;
+  font-weight: bolder;
+}
+
+.nav-menu-items {
+  text-decoration: none;
+  color: black;
+  font-size: 0.75rem;
+}

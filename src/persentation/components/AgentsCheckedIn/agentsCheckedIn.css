@@ -1,0 +1,26 @@
+.checkIn-list {
+height: 800px;
+width: 100%;
+overflow-y: scroll !important;
+scrollbar-width: thin !important;
+scrollbar-color: #999 #f0f0f0 !important;
+}
+
+.listItem {
+    padding: 2px !important;
+    font-size: smaller !important;
+    
+}
+
+/* @media (max-width: 767px) {
+    .listItem {
+        font-size: medium !important;
+    }
+    .checkIn-list {
+        width: 80vw !important;
+    }
+  } */
+/* 
+.checkIn-list::-webkit-scrollbar-thumb {
+    border-radius: 16px !important; 
+} */

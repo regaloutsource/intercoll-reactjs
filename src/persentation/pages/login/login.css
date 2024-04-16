@@ -1,0 +1,16 @@
+.login-div {
+    max-width: 450px;
+    display:flex ;
+    flex-direction:column ;
+    justify-content:center;
+    padding:3rem;
+    padding: 0 5px 5px 5px;
+    height: 100%;
+}
+
+.login-img {
+    max-width:10vh;
+    height: auto;
+    z-index: 3;
+    margin-left: 1vw;
+}

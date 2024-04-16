@@ -1,0 +1,13 @@
+.table-head {
+    background-color: lightgray;
+}
+
+.table-cell {
+    font-size: small !important;
+    font-weight:600 !important;
+}
+
+.no-record {
+    text-align: center;
+    padding: 5rem;
+}

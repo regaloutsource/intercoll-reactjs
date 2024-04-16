@@ -1,0 +1,23 @@
+.btnGrp,
+.selectedBtn {
+    box-shadow: none !important;
+}
+
+.btnGrp {
+    background-color: white;
+}
+
+.selectedBtn:hover {
+    background-color: #00f500;
+}
+
+.main-box {
+    display: flex;
+    margin: 2em 0em;
+}
+
+@media (max-width:900px) {
+    .btnGrp {
+        font-size: xx-small !important;
+    }
+}
