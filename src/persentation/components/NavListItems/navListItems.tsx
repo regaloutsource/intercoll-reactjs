@@ -1,8 +1,8 @@
 import HomeIcon from '@mui/icons-material/Home';
 import AnalyticsIcon from '@mui/icons-material/Analytics';
 import AccountBalanceIcon from '@mui/icons-material/AccountBalance';
-import SupportAgentIcon from '@mui/icons-material/SupportAgent';
-import GroupIcon from '@mui/icons-material/Group';
+// import SupportAgentIcon from '@mui/icons-material/SupportAgent';
+// import GroupIcon from '@mui/icons-material/Group';
 import CalculateIcon from '@mui/icons-material/Calculate';
 import AdsClickIcon from '@mui/icons-material/AdsClick';
 import AddBoxIcon from '@mui/icons-material/AddBox';
@@ -15,7 +15,26 @@ export const NavListItem = [
     id: 1,
     name: 'Home',
     icon: <HomeIcon />,
-    href: routes.DASHBOARD
+    subCategory: [
+      {
+        name: 'Daily Graphs',
+        href: routes.DASHBOARD
+      },
+      {
+        name: 'Weekly Graphs',
+        href: routes.DASHBOARD_WEEKLY
+      },
+      {
+        name: 'Monthly Graphs',
+        href: routes.DASHBOARD_MONTHLY
+      },
+      {
+        name: "Target DD's Graphs",
+        href: routes.DASHBOARD_TARGETS
+      },
+      
+
+    ]
   },
   {
     id: 2,
@@ -35,7 +54,7 @@ export const NavListItem = [
         href: routes.AU_FIELD_AGENTS_REPORT
       },
       {
-        name: 'AuPhoneAgents Refort',
+        name: 'AuPhoneAgents Report',
         href: routes.AU_PHONE_AGENTS_REPORT
       }
     ],
@@ -48,48 +67,24 @@ export const NavListItem = [
   },
   {
     id: 4,
-    name: 'Field Agents',
+    name: 'Agents',
     icon: <AccountBoxIcon />,
     subCategory: [
       {
-        name: 'Field Agent Details',
+        name: 'Field Agent',
         href:routes.FIELD_AGENT_DETAILS
       }, 
       {
-        name: 'Register Field Agent',
-        href:routes.REGISTER_FIELD_AGENT
+        name: 'Phone Agent',
+        href:routes.PHONE_AGENT_DETAILS
+      },
+      {
+        name: 'AU Agent',
+        href:routes.AU_AGENT_DETAILS
       }],
   },
   {
     id: 5,
-    name: 'Phone Agents',
-    icon: <SupportAgentIcon />,
-    subCategory: [
-      {
-        name: 'Phone Agent Details',
-        href:routes.PHONE_AGENT_DETAILS
-      }, 
-      {
-        name: 'Register Phone Agent',
-        href:routes.REGISTER_PHONE_AGENT
-      }],
-  },
-  {
-    id: 6,
-    name: 'AU Agents',
-    icon: <GroupIcon />,
-    subCategory: [
-      {
-        name: 'AU Agent Details',
-        href:routes.AU_AGENT_DETAILS
-      }, 
-      {
-        name: 'Register AU Agent',
-        href:routes.REGISTER_AU_AGENT
-      }],
-  },
-  {
-    id: 7,
     name: 'Calculator',
     icon: <CalculateIcon />,
     subCategory: [
@@ -107,13 +102,13 @@ export const NavListItem = [
       }],
   },
   {
-    id: 8,
+    id: 6,
     name: 'Targets',
     icon: <AdsClickIcon />,
     href: routes.TARGETS
   },
   {
-    id: 9,
+    id: 7,
     name: "Manual DD's",
     icon: <AddBoxIcon />,
     href:routes.MANUAL_DD

@@ -5,12 +5,23 @@ import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
-import { deleteDialogProps } from '../../../domain/types/deleteDialogProps';
 
 
-const ResponsiveDialog:React.FC<deleteDialogProps> = (props) => {
+type Idialog = {
+  id: number
+  fullScreen: boolean,
+  open: boolean,
+  title: string,
+  content: JSX.Element,
+  handleClose: ()=>void,
+  actionName: string
+  // action: ((id: number) => void) | ((id: string) => void);
+  action: (id: number) =>void
+}
+
+const ResponsiveDialog:React.FC<Idialog> = (props) => {
   
-    const {id,fullScreen,open,handleClose,removeItem} = props
+    const {id,fullScreen,open,handleClose,title,content,actionName,action} = props
 
   return (
       <Dialog
@@ -26,19 +37,19 @@ const ResponsiveDialog:React.FC<deleteDialogProps> = (props) => {
           }}
       >
         <DialogTitle id="responsive-dialog-title">
-          {"Are you sure you want to delete this entry?"}
+          {title}
         </DialogTitle>
         <DialogContent>
           <DialogContentText>
-            {"This will be permanently deleted"}
+            {content}
           </DialogContentText>
         </DialogContent>
         <DialogActions>
           <Button autoFocus onClick={handleClose}>
             Cancel
           </Button>
-          <Button onClick={() => removeItem(id)} autoFocus>
-            Delete
+          <Button onClick={() => action(id)} autoFocus>
+            {actionName}
           </Button>
         </DialogActions>
       </Dialog>

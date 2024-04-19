@@ -1,8 +1,8 @@
 import React from 'react'
-import { FieldAgentDetailsInterface } from '../../../domain/interfaces/Tables/FieldAgentDetailsInterface';
+import { FieldAgentInterface } from '../../../domain/interfaces/AgentsInterface';
 import DataTable from '../../components/DataTable/DataTable';
 
-const sampleData: FieldAgentDetailsInterface[] = [
+const sampleData: FieldAgentInterface[] = [
     {
         name: "John Doe",
         opCode: "ABC123",
@@ -34,7 +34,7 @@ const header = ['Name','Op Code','Email','Leader Email','App Version','Device']
 
 const FieldAgentDetails = () => {
   return (
-    <DataTable title='Field Agent Details' dataTableHeader={header} data={sampleData} />
+    <DataTable title='Field Agent Details' dataTableHeader={header} data={sampleData} enableRegister={true} />
   )
 }
 

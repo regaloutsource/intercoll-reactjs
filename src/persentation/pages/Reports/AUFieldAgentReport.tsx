@@ -1,8 +1,8 @@
 import React from 'react';
-import { FieldCustomerInterface } from '../../../domain/interfaces/Tables/FieldCustomerInterface';
+import { FieldCustomerInterface } from '../../../domain/interfaces/AgentDetailsInterface';
 import DataTable from '../../components/DataTable/DataTable';
 
-const header = ['Customer ID', 'OP Code', 'Amount', 'Payment Mode', 'Frequency', 'Date', 'Time', 'NOP Served', 'RSL', 'GNA', 'On Winz', 'EFS', 'PFS', 'Escalate', 'DTR Unknown']
+const header = ['Customer ID', 'OP Code', 'Amount', 'Payment Mode', 'Frequency', 'Date', 'Time', 'NOP Served', 'RSL', 'GNA', 'On Winz', 'EFS', 'PFS', 'Escalate', 'DTR Unknown','Revist','No One Home','Business Card','Veda','SWD','SwO','Inbound Call','Outbound call','New Details','AGW','LMTC','NFI','CX','Details Conf','FB Message','SS','EXE','FBTVA','Doc','FBTVC','REPL','EstateNum','Attachment']
 
 const sampleData = [
     {
@@ -20,7 +20,7 @@ const sampleData = [
         efs: null,
         pfs: "Yes",
         escalate: "No",
-        dtrUnknown: null
+        dtrUnknown: null,
     },
     {
         customerId: 2,

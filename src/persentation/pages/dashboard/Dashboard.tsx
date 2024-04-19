@@ -1,5 +1,12 @@
-import { Accordion, AccordionDetails, AccordionSummary, Box, Grid, useMediaQuery } from '@mui/material'
 import React from 'react'
+
+import Accordion from '@mui/material/Accordion'
+import AccordionDetails from '@mui/material/AccordionDetails'
+import AccordionSummary from '@mui/material/AccordionSummary'
+import Box from '@mui/material/Box'
+import Grid from '@mui/material/Grid'
+import useMediaQuery  from '@mui/material/useMediaQuery'
+
 import AgentsCheckedIn from '../../components/AgentsCheckedIn/AgentsCheckedIn'
 import FilterAgentButtonGroup from '../../components/FilterAgentButtonGroup/FilterAgentButtonGroup'
 import AgentAttendanceCard from '../../components/agentAttendance/AgentAttendanceCard'
@@ -8,7 +15,7 @@ import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import DoughnutChart from '../../components/charts/DoughnutChart'
 
 import { disputedChartData, dtrGnaChartData, moneyChartData, paymentChartData, redSlipsChartData, signupsChartData, visitsChartData } from '../../../domain/constants/chartData'
-import { disputedChartOptions, dtrChartOptions, moneyChartOptions, paymentChartOptions, redSlipsChartOptions, signupsChartOptions, visitsChartOptions } from '../../../domain/constants/chartOptions'
+import { disputedChartOptions, dtrChartOptions, moneyChartOptions, paymentChartOptions, redSlipsChartOptions, signupsChartOptions, visitsChartOptions } from '../../../domain/constants/chartData'
 
 import {
   Chart as ChartJS,
@@ -53,7 +60,7 @@ const Dashboard: React.FC = () => {
     <Box overflow='auto'>
       <FilterAgentButtonGroup />
       <Grid container mt={2} rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }} justifyContent='center' alignItems='flex-start'>
-        <Grid item xs={12} sm={4} md={4} lg={3}>
+        <Grid item xs={12} sm={4} md={4} lg={2}>
           <Box>
            {
            (isSmallScreen)?
@@ -72,21 +79,21 @@ const Dashboard: React.FC = () => {
           </Box>
         </Grid>
       
-        <Grid item xs={12} sm={8} md={8} lg={6}>
+        <Grid item xs={12} sm={8} md={8} lg={7}>
           <Box display='flex' flexDirection='column' m={1}>
-            <AgentAttendanceCard />
-            <BarChart data={signupsChartData} options={signupsChartOptions} />
-            <LineChart data={visitsChartData} options={visitsChartOptions} />
-            <BarChart data={moneyChartData} options={moneyChartOptions} />
+            <BarChart size={50} data={signupsChartData} options={signupsChartOptions} />
+            <LineChart size={50} data={visitsChartData} options={visitsChartOptions} />
+            <BarChart size={50} data={moneyChartData} options={moneyChartOptions} />
           </Box>
         </Grid>
 
         <Grid item xs={12} sm={12} md={12} lg={3}>
           <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }} justifyContent='center' alignItems='flex-start'>
-            <Grid item xs={6} sm={6} md={6} lg={12}><DoughnutChart data={paymentChartData} options={paymentChartOptions} /></Grid>
-            <Grid item xs={6} sm={6} md={6} lg={12}><DoughnutChart data={dtrGnaChartData} options={dtrChartOptions} /></Grid>
-            <Grid item xs={6} sm={6} md={6} lg={12}><DoughnutChart data={disputedChartData} options={disputedChartOptions} /></Grid>
-            <Grid item xs={6} sm={6} md={6} lg={12}><BarChart data={redSlipsChartData} options={redSlipsChartOptions} /></Grid>
+            <AgentAttendanceCard />
+            <Grid item xs={6} sm={6} md={6} lg={12}><DoughnutChart size={30} data={paymentChartData} options={paymentChartOptions} /></Grid>
+            <Grid item xs={6} sm={6} md={6} lg={12}><DoughnutChart size={30} data={dtrGnaChartData} options={dtrChartOptions} /></Grid>
+            <Grid item xs={6} sm={6} md={6} lg={12}><DoughnutChart size={30} data={disputedChartData} options={disputedChartOptions} /></Grid>
+            <Grid item xs={6} sm={6} md={6} lg={12}><BarChart size={20} data={redSlipsChartData} options={redSlipsChartOptions} /></Grid>
           </Grid>
         </Grid>
 

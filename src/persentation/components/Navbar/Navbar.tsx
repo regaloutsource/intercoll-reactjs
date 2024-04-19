@@ -1,13 +1,24 @@
 import React from 'react'
+
 import MenuIcon from '@mui/icons-material/Menu';
-import { Box, IconButton, Toolbar, Typography, styled } from '@mui/material'
+import Box from '@mui/material/Box'
+import IconButton from '@mui/material/IconButton'
+import Toolbar from '@mui/material/Toolbar'
+import Typography from '@mui/material/Typography'
+import { styled }  from '@mui/material/styles'
+
 import MuiAppBar from '@mui/material/AppBar';
 import LogoutIcon from '@mui/icons-material/Logout';
 import DateRangeIcon from '@mui/icons-material/DateRange';
 import './navbar.css'
 
 import { AppBarProps } from '../../../domain/interfaces/AppBarProps';
-import { NavbarProps } from '../../../domain/types/navbarprops'; 
+ 
+
+export type INavbar = {
+  open: boolean,
+  handleDrawerOpen: () => void
+}
 
 const drawerWidth = 240;
 const drawerWidthSmall = 180;
@@ -35,7 +46,7 @@ const AppBar = styled(MuiAppBar, {
     }),
   }));
 
-const Navbar:React.FC<NavbarProps> = (props) => {
+const Navbar:React.FC<INavbar> = (props) => {
     const {open, handleDrawerOpen} = {...props}
       
   return (

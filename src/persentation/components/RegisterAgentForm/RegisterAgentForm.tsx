@@ -1,19 +1,23 @@
 import React from 'react';
+
 import * as Yup from 'yup';
 import { useFormik } from 'formik';
-import { TextField, Button, Card, useMediaQuery } from '@mui/material';
 
-import { useTheme } from '@mui/material/styles';
+import TextField from '@mui/material/TextField';
+import Button from '@mui/material/Button';
+import useMediaQuery from '@mui/material/useMediaQuery';
+
+import useTheme from '@mui/material/styles/useTheme';
 
 import './registerForm.css'
 
 
-type RegisterAgentFormProps = {
+type IRegisterAgentForm = {
     onSubmit: () => void;
 }
 
 
-const RegisterAgentForm = () => {
+const RegisterAgentForm: React.FC = () => {
 
     const theme = useTheme();
     const smallScreen = useMediaQuery(theme.breakpoints.down('sm'));
@@ -39,7 +43,6 @@ const RegisterAgentForm = () => {
   });
 
   return (
-    <Card>
       <form className='form-wrapper' onSubmit={formik.handleSubmit}>
         <TextField
           size="small"
@@ -50,7 +53,7 @@ const RegisterAgentForm = () => {
           onChange={formik.handleChange}
           error={formik.touched.name && Boolean(formik.errors.name)}
           helperText={formik.touched.name && formik.errors.name}
-          sx={{ mb: '2em' , width:smallScreen?'100%':'40%'}}
+          sx={{ mb: '2em' , width:smallScreen?'100%':'60%'}}
         />
         <TextField
           fullWidth
@@ -62,7 +65,7 @@ const RegisterAgentForm = () => {
           onChange={formik.handleChange}
           error={formik.touched.opCode && Boolean(formik.errors.opCode)}
           helperText={formik.touched.opCode && formik.errors.opCode}
-          sx={{ mb: '2em' , width:smallScreen?'100%':'40%'}}
+          sx={{ mb: '2em' , width:smallScreen?'100%':'60%'}}
         />
         <TextField
           fullWidth
@@ -75,7 +78,7 @@ const RegisterAgentForm = () => {
           onChange={formik.handleChange}
           error={formik.touched.email && Boolean(formik.errors.email)}
           helperText={formik.touched.email && formik.errors.email}
-          sx={{ mb: '2em' , width:smallScreen?'100%':'40%'}}
+          sx={{ mb: '2em' , width:smallScreen?'100%':'60%'}}
         />
         <TextField
           fullWidth
@@ -88,7 +91,7 @@ const RegisterAgentForm = () => {
           onChange={formik.handleChange}
           error={formik.touched.leaderEmail && Boolean(formik.errors.leaderEmail)}
           helperText={formik.touched.leaderEmail && formik.errors.leaderEmail}
-          sx={{ mb: '2em' , width:smallScreen?'100%':'40%'}}
+          sx={{ mb: '2em' , width:smallScreen?'100%':'60%'}}
         />
         <TextField
           fullWidth
@@ -100,14 +103,13 @@ const RegisterAgentForm = () => {
           onChange={formik.handleChange}
           error={formik.touched.password && Boolean(formik.errors.password)}
           helperText={formik.touched.password && formik.errors.password}
-          sx={{ mb: '2em' , width:smallScreen?'100%':'40%'}}
+          sx={{ mb: '2em' , width:smallScreen?'100%':'60%'}}
         />
 
         <Button type="submit" variant="contained">
           Register
         </Button>
       </form>
-      </Card>
   );
 };
 

@@ -3,14 +3,41 @@ import { createTheme } from '@mui/material/styles';
 const theme = createTheme({
   palette: {
     primary: {
-      main: '#00F500', // Black color
-      light: '#80FF80', // Slightly lighter shade of black
-      dark: '#007A00', // Same as main color for consistency
+      main: '#00B677',
+      light: '#73E8C0', 
+      dark: '#007C4C', 
       contrastText: '#ffffff', // White color for text contrast
     },
   },
   typography: {
-    fontFamily: 'Roboto, sans-serif', 
+    h1: {
+      fontFamily: 'Nunito Sans', 
+    },
+    h2: {
+      fontFamily: 'Nunito Sans', 
+    },
+    h3: {
+      fontFamily: 'Nunito Sans', 
+    },
+    h4: {
+      fontFamily: 'Nunito Sans', 
+    },
+    h5: {
+      fontFamily: 'Nunito Sans', 
+    },
+    h6: {
+      fontFamily: 'Nunito Sans', 
+    },
+    subtitle1: {
+      fontFamily: 'Raleway', 
+    },
+    subtitle2: {
+      fontFamily: 'Raleway', 
+    },
+    body1: {
+      fontFamily: 'Martel Sans', 
+      fontSize: '0.8vmax'
+    },
   },
   components: {
     MuiCard:{

@@ -1,54 +1,87 @@
 import React, { useState } from 'react';
-import {
-  Table,
-  TableContainer,
-  TableHead,
-  TableBody,
-  TableRow,
-  TableCell,
-  TablePagination,
-  TextField,
-  Button,
-  Paper,
-  Box,
-  Typography,
-  Tooltip,
-  useMediaQuery,
-} from '@mui/material';
 
-import { dataTableProps } from '../../../domain/types/dataTableProps';
-//import EditIcon from '@mui/icons-material/Edit';
+import Table from '@mui/material/Table'
+import TableContainer from '@mui/material/TableContainer'
+import TableHead from '@mui/material/TableHead'
+import TableBody from '@mui/material/TableBody'
+import TableRow from '@mui/material/TableRow'
+import TableCell from '@mui/material/TableCell'
+import TablePagination from '@mui/material/TablePagination'
+import TextField from '@mui/material/TextField'
+import Button from '@mui/material/Button'
+import Paper from '@mui/material/Paper'
+import Box from '@mui/material/Box'
+import Typography from '@mui/material/Typography'
+import Tooltip from '@mui/material/Tooltip'
+import useMediaQuery from '@mui/material/useMediaQuery'
+
 import DeleteIcon from '@mui/icons-material/Delete';
 
-import ShouldDeleteDialogBox from '../DialogBox/DialogBox'
+
+import DialogBox from '../DialogBox/DialogBox'
 
 import './dataTable.css'
 import { useTheme } from '@mui/material/styles';
+import RegisterModal from '../RegisterModel/RegisterModel';
 
-const DataTable: React.FC<dataTableProps> = ({title,dataTableHeader,data}) => {
+type headerDetails ={
+  name: string,
+  keyName: string,
+  type: 'number' | 'string'
+}
+
+type IdataTable = {
+  title: string;
+  dataTableHeader: Array<string>;
+  data: Array<any>;
+  // enableDelete: boolean;
+  // enableEdit: boolean;
+  enableRegister?: boolean;
+}
+
+const DataTable: React.FC<IdataTable> = ({title,dataTableHeader,data,enableRegister = false}) => {
   const [page, setPage] = useState<number>(0);
   const [rowsPerPage, setRowsPerPage] = useState<number>(5);
   const [searchTerm, setSearchTerm] = useState<string>('');
 
   const [tableData,setTableData] = useState(data)
 
-  //for the dialogBox
-  const [open, setOpen] = React.useState(false);
-  const [delId,setDelId] = React.useState(-1)
+
   const theme = useTheme();
+  //for the dialogBox
+  const [openDeleteDialog, setOpenDeleteDialog] = React.useState(false);
+  const [delId,setDelId] = React.useState(-1)
   const fullScreen = useMediaQuery(theme.breakpoints.down('md'));
 
-  const handleClickOpen = (id:number) => {
+  const handleDeleteDialogOpen = (id:number) => {
     setDelId(id)
-    setOpen(true);
+    setOpenDeleteDialog(true);
   };
 
-  const handleClose = () => {
+  const handleDeleteDialogClose = () => {
     setDelId(-1)
-    setOpen(false);
+    setOpenDeleteDialog(false);
   };
 
   //-------------------------------
+  
+  //for Registerating Agent Model
+
+  const [openRegModel, setOpenRegModel] = React.useState(false);
+  const handleRegModelOpen = () => {
+    setOpenRegModel(true);
+  };
+
+  const handleRegModelClose = () => {
+    setOpenRegModel(false);
+  };
+
+
+  //-----------------------------
+
+
+
+
 
   const handleChangePage = (event: React.MouseEvent<HTMLButtonElement> | null, newPage: number) => {
     setPage(newPage);
@@ -85,12 +118,13 @@ const DataTable: React.FC<dataTableProps> = ({title,dataTableHeader,data}) => {
   };
 
   const removeItem = (index:number) => {
-    handleClose();
+    handleDeleteDialogClose();
     setTableData(tableData.filter((item,idx) => {
       return idx!==index
     }
   ))
   }
+
 
   const goToFirstPage = () => {
     setPage(0);
@@ -113,18 +147,18 @@ const DataTable: React.FC<dataTableProps> = ({title,dataTableHeader,data}) => {
         size='small'
       />
       </Box>
-      <TableContainer component={Paper}>
+      <TableContainer component={Paper} className='table-container'>
         <Table>
           <TableHead>
             <TableRow className='table-head'>
               <TableCell className='table-cell'>Actions</TableCell>
              {dataTableHeader.map((item) =><TableCell className='table-cell' key={item} >
-                  {item}   
+                  {item}  
               </TableCell>)}
             </TableRow>
           </TableHead>
           <TableBody>
-            {(data.length === 0)
+            {(filteredData.length === 0)
             ?<TableRow>
             <TableCell colSpan={dataTableHeader.length + 1} align="center">
               <Typography variant="subtitle1">No records found</Typography>
@@ -134,7 +168,7 @@ const DataTable: React.FC<dataTableProps> = ({title,dataTableHeader,data}) => {
               <TableRow>
                 <TableCell>
                   <Tooltip title='Delete'>
-                    <Button onClick={() => handleClickOpen(idx)}>
+                    <Button onClick={() => handleDeleteDialogOpen(idx)}>
                       <DeleteIcon/>
                     </Button>
                   </Tooltip>
@@ -149,7 +183,7 @@ const DataTable: React.FC<dataTableProps> = ({title,dataTableHeader,data}) => {
                 {Object.values(row).map((val: any) => {
                   return(
                   
-                      <TableCell>{val}</TableCell>
+                      <TableCell><Typography variant='body1'>{val}</Typography></TableCell>
         
                   )
                 })}
@@ -171,11 +205,15 @@ const DataTable: React.FC<dataTableProps> = ({title,dataTableHeader,data}) => {
             <Button onClick={goToFirstPage} disabled={page === 0}>First</Button>
             <Button onClick={goToLastPage} disabled={page >= Math.ceil(filteredData.length / rowsPerPage) - 1}>Last</Button>
 </Box> */}
+      <Box display='flex' justifyContent='space-between'>
+        <Button variant="contained" onClick={handleDownload}> 
+        <Typography variant='body1' textTransform='capitalize'>Download Table Content </Typography></Button>
+        {enableRegister && <Button variant="contained" onClick={handleRegModelOpen}>Register Agent</Button>}
+      </Box>
+      
+      <DialogBox id={delId} fullScreen={fullScreen} open={openDeleteDialog} handleClose={handleDeleteDialogClose} title='Are you sure you want to delete this entry?' content={<Typography>This will be permanently deleted</Typography>} actionName='Delete' action={removeItem} />
 
-      <Button variant="contained" onClick={handleDownload} style={{ marginTop: '10px' }}>
-        Download Table Content
-      </Button>
-      <ShouldDeleteDialogBox id={delId} fullScreen={fullScreen} open={open} handleClose={handleClose} removeItem={removeItem} />
+      {enableRegister && <RegisterModal open={openRegModel} handleClose={handleRegModelClose} modelHeading={`Register ${title.split(' ')[0]} Agent`} />}
     </Box>
   );
 };

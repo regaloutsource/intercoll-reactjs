@@ -1,7 +1,9 @@
 import React from 'react'
-import DataTable from '../../components/DataTable/DataTable';
 
-const sampleData: Array<PhoneAgentDetailsInterface> = [
+import DataTable from '../../components/DataTable/DataTable';
+import { PhoneAgentInterface } from '../../../domain/interfaces/AgentsInterface'
+
+const sampleData: Array<PhoneAgentInterface> = [
     {
         name: "David Brown",
         opCode: "ABC123",
@@ -27,7 +29,7 @@ const header=['Name','Op Code','Email','Leader Email'];
 
 const PhoneAgentDetails = () => {
   return (
-    <DataTable title='Phone Agent Details' dataTableHeader={header} data={sampleData} />
+    <DataTable title='Phone Agent Details' dataTableHeader={header} data={sampleData} enableRegister={true} />
   )
 }
 

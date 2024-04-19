@@ -1,6 +1,6 @@
 import React from 'react'
 import DataTable from '../../components/DataTable/DataTable'
-import { PhoneCustomerInterface } from '../../../domain/interfaces/Tables/PhoneCustomerInterface';
+import { PhoneAgentInterface } from '../../../domain/interfaces/AgentsInterface';
 
 
 const PhoneAgentReport = () => {

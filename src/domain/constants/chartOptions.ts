@@ -97,3 +97,84 @@ export const moneyChartOptions = {
       },
     },
   }
+
+
+  export const mtdGnaChartOptions = {
+    maintainAspectRatio:false,
+    responsive: true,
+    plugins: {
+      legend: {
+        position: 'top' as const,
+      },
+      title: {
+        display: true,
+        text: 'MTD GNA',
+      },
+    },
+}
+
+export const ddChartOptions = {
+  maintainAspectRatio:false,
+  responsive: true,
+  plugins: {
+    legend: {
+      position: 'top' as const,
+    },
+    title: {
+      display: true,
+      text: "Top DD's",
+    },
+  },
+}
+
+export const monthToDateChartOptions = {
+  maintainAspectRatio:false,
+  responsive: true,
+  plugins: {
+    legend: {
+      position: 'top' as const,
+    },
+    title: {
+      display: true,
+      text: 'Month to Data',
+    },
+  },
+}
+
+export const mtdCollectedChartOptions ={
+  maintainAspectRatio:false,
+  indexAxis: 'y' as const,
+  responsive: true,
+  scales: {
+    x: {
+      beginAtZero: true,
+      ticks: {
+        // Include a dollar sign ($) in the tick labels
+        callback: (value: number) => `$${value}`,
+      },
+    },
+  },
+  plugins: {
+    legend: {
+      position: 'top' as const,
+    },
+    title: {
+      display: true,
+      text: 'MTD Cash Collected',
+    },
+  },
+}
+
+export const monthPieChartOptions = {
+  maintainAspectRatio:false,
+  responsive: true,
+  plugins: {
+    legend: {
+      position: 'top' as const,
+    },
+    title: {
+      display: true,
+      text: 'Month to Date',
+    },
+  },
+}

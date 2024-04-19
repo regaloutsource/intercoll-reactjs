@@ -1,5 +1,8 @@
-import { Box, Button } from '@mui/material'
 import React, { useState } from 'react'
+
+import  Box from '@mui/material/Box'
+import  Button from '@mui/material/Button'
+
 import './filterbtn.css'
 
 const FilterAgentButtonGroup:React.FC = () => {
@@ -12,18 +15,18 @@ const FilterAgentButtonGroup:React.FC = () => {
   return (
     <Box display='flex' sx={{marginX:'2em'}}>
        {
-        buttons.map((element,idx)=>
-        <Button key={idx} 
-        className={(idx===selectedButton)?'selectedBtn':'btnGrp'}
-        variant={(idx===selectedButton)?'contained':'outlined'}
+        buttons.map((element,index)=>
+        <Button key={index} 
+        className={(index===selectedButton)?'selectedBtn':'btnGrp'}
+        variant={(index===selectedButton)?'contained':'outlined'}
         size='small'
         sx={{
-            borderTopLeftRadius:(idx===0)?'32px':'0px',
-            borderBottomLeftRadius:(idx===0)?'32px':'0px',
-            borderTopRightRadius:(idx===3)?'32px':'0px',
-            borderBottomRightRadius:(idx===3)?'32px':'0px',
+            borderTopLeftRadius:(index===0)?'32px':'0px',
+            borderBottomLeftRadius:(index===0)?'32px':'0px',
+            borderTopRightRadius:(index===3)?'32px':'0px',
+            borderBottomRightRadius:(index===3)?'32px':'0px',
         }}
-        onClick={()=>handleClick(idx)}>
+        onClick={()=>handleClick(index)}>
           {element}
         </Button>)
        }

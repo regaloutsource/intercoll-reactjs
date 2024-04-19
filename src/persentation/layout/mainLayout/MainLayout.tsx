@@ -1,7 +1,12 @@
 import React from 'react'
+
+import Box from '@mui/material/Box';
+import CssBaseline from '@mui/material/CssBaseline';
+import Toolbar from '@mui/material/Toolbar';
+
 import SideBar from '../../components/sidebar/SideBar'
 import Navbar from '../../components/Navbar/Navbar';
-import { Box, CssBaseline, Toolbar } from '@mui/material';
+
 import './main.css';
 
 import { ILayout } from '../../../domain/types/layoutProps';

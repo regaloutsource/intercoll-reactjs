@@ -1,5 +1,6 @@
 .table-head {
     background-color: lightgray;
+    text-wrap: nowrap;
 }
 
 .table-cell {
@@ -10,4 +11,11 @@
 .no-record {
     text-align: center;
     padding: 5rem;
+}
+
+.table-container{
+    display: flex;
+    align-items: center;
+    overflow-x: scroll;
+    max-width: 80vw;
 }

@@ -1,5 +1,5 @@
 import React from 'react'
-import { PhoneCustomerInterface } from '../../../domain/interfaces/Tables/PhoneCustomerInterface';
+import { PhoneAgentInterface } from '../../../domain/interfaces/AgentsInterface';
 import DataTable from '../../components/DataTable/DataTable';
 
 const header = ["Customer ID","Op Code","Amount","DD","Date","Time"]

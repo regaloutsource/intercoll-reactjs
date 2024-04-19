@@ -1,5 +1,11 @@
-import { Card, Divider, List, ListItem, ListItemIcon, ListItemText } from '@mui/material'
 import React from 'react'
+
+import Card from '@mui/material/Card'
+import Divider from '@mui/material/Divider'
+import List from '@mui/material/List'
+import ListItem from '@mui/material/ListItem'
+import ListItemIcon from '@mui/material/ListItemIcon'
+import ListItemText  from '@mui/material/ListItemText'
 
 import AccountBoxIcon from '@mui/icons-material/AccountBox';
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
@@ -13,7 +19,7 @@ const checkedIn = 67
 
 const AgentAttendanceCard:React.FC = () => {
   return (
-    <Card className='attendance-data-card'>
+    <Card sx={{width:'100%'}}>
         <List>
 
           <ListItem>

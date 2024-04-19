@@ -1,12 +1,27 @@
+import React
+ from 'react';
 import { NavLink as RouterLink } from 'react-router-dom';
 
-import { ListItemButton, ListItemText, ListItemIcon, Tooltip } from '@mui/material';
+import ListItemButton from '@mui/material/ListItemButton';
+import ListItemText from '@mui/material/ListItemText';
+import ListItemIcon from '@mui/material/ListItemIcon';
+import Tooltip from '@mui/material/Tooltip';
 
-import { navItemProps } from '../../../domain/types/navItemProps';
+import { useTheme } from '@mui/material/styles';
+
+type INavItem = {
+    id:number,
+    name: string,
+    icon: JSX.Element | null,
+    href: string,
+    open: boolean,
+    handleNavLinkClick: (id:number) => void,
+}
 
 
-const NavItem: React.FC<navItemProps> = (props) => {
+const NavItem: React.FC<INavItem> = (props) => {
     const { id,name, icon, href, open,handleNavLinkClick } = props
+    const theme = useTheme();
     return <ListItemButton
         onClick={() => handleNavLinkClick(id) }
         disableGutters
@@ -22,7 +37,7 @@ const NavItem: React.FC<navItemProps> = (props) => {
                 color: 'text.primary',
                 bgcolor: 'action.selected',
                 fontWeight: 'fontWeightBold',
-                borderLeft: '4px solid #00f500'
+                borderLeft: `4px solid ${theme.palette.primary.main}`
             },
         }}
     >

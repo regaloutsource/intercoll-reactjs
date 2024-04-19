@@ -1,7 +1,14 @@
 import React from 'react';
+
 import * as Yup from 'yup';
 import { useFormik } from 'formik';
-import { TextField, Button, Typography, Box, useMediaQuery } from '@mui/material';
+
+import TextField from '@mui/material/TextField';
+import Button from '@mui/material/Button';
+import Typography from '@mui/material/Typography';
+import Box from '@mui/material/Box';
+import useMediaQuery from '@mui/material/useMediaQuery';
+
 import logo from "../../../assets/img/debtManager.svg"
 import './login.css'
 import { useNavigate } from 'react-router';
@@ -33,9 +40,7 @@ const Login: React.FC = () => {
 
   return (
     <Box component="div" className='login-div' >
-      <Box sx={{display:'flex',
-      flexDirection: isSmallScreen?'column':'row',
-      alignItems:'center'}}>
+      <Box className='login-header'>
       <img src={logo} alt='Debt Manager ' className='login-img'/>
       <Typography variant={isSmallScreen?'h6':'h3'} fontFamily='system-ui,monospace' fontWeight='bolder' ml={4}>DebtManagers</Typography>
       </Box>

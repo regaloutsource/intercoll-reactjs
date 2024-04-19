@@ -3,6 +3,7 @@ import { Routes, Route } from 'react-router'
 import { routes } from './routes'
 import NoPage from '../persentation/pages/NoPage/NoPage'
 import Dashboard from '../persentation/pages/dashboard/Dashboard'
+import DashboardMontly from '../persentation/pages/dashboard/DashboardMontly'
 
 
 const AppRoutes = () => {
@@ -13,8 +14,9 @@ const AppRoutes = () => {
     const Login = React.lazy(() => import("../persentation/pages/login/Login"))
     
     const MainLayout = React.lazy(() => import('../persentation/layout/mainLayout/MainLayout'))
+    
     //const Dashboard = React.lazy(() => import('../persentation/pages/dashboard/Dashboard') )
-
+    const MontlyDashboard = React.lazy(() => import('../persentation/pages/dashboard/DashboardMontly'))
 
     //reports
     const FieldAgentReport = React.lazy(() => import('../persentation/pages/Reports/FieldAgentReport'))
@@ -30,10 +32,7 @@ const AppRoutes = () => {
     const AuFieldAgentDetails = React.lazy(() => import('../persentation/pages/AgentDetails/AuFieldAgentDetails'))
     //const AuPhoneAgentDetails = React.lazy(() => import('../persentation/pages/AgentDetails/AuPhoneAgentDetails'))
 
-    //Register Agent
-    const RegisterFieldAgent = React.lazy(() => import('../persentation/pages/RegisterFieldAgent/RegisterFieldAgent'))
-    const RegisterPhoneAgent = React.lazy(() => import('../persentation/pages/RegisterPhoneAgent/RegisterPhoneAgent'))
-    const RegisterAuAgent = React.lazy(() => import('../persentation/pages/RegisterAuAgent/RegisterAuAgent'))
+  
 
     const ManualDdTable = React.lazy(() => import('../persentation/pages/ManualDdTable/ManualDdTable'))
     const TargetTable = React.lazy(() => import('../persentation/pages/TargetTable/TargetTable'))
@@ -53,15 +52,9 @@ const AppRoutes = () => {
         </Suspense>} 
       />
 
-      <Route 
-        path={routes.DASHBOARD} 
-        element={
-          <Suspense fallback="">
-            <MainLayout 
-            Child={<Dashboard/>}
-            />
-          </Suspense>}
-        />
+      <Route path={routes.DASHBOARD} element={<Suspense fallback=""><MainLayout Child={<Dashboard/>}/></Suspense>}/>
+      <Route path={routes.DASHBOARD_WEEKLY} element={<Suspense fallback=""><MainLayout Child={<Dashboard/>}/></Suspense>}/>
+      <Route path={routes.DASHBOARD_MONTHLY} element={<Suspense fallback=""><MainLayout Child={<DashboardMontly/>}/></Suspense>}/>
 
       <Route path={routes.FIELD_AGENTS_REPORT} element ={ <Suspense fallback=""><MainLayout Child={<FieldAgentReport/>}/></Suspense>}/>
       <Route path={routes.PHONE_AGENTS_REPORT} element ={<Suspense fallback=""><MainLayout Child={<PhoneAgentReport/>}/></Suspense>}/>
@@ -74,9 +67,6 @@ const AppRoutes = () => {
       <Route path={routes.PHONE_AGENT_DETAILS} element ={<Suspense fallback=""><MainLayout Child={<PhoneAgentDetails/>}/></Suspense>}/>
       <Route path={routes.AU_AGENT_DETAILS} element ={<Suspense fallback=""><MainLayout Child={<AuFieldAgentDetails/>}/></Suspense>}/>
 
-      <Route path={routes.REGISTER_FIELD_AGENT} element ={<Suspense fallback=""><MainLayout Child={<RegisterFieldAgent/>}/></Suspense>}/>
-      <Route path={routes.REGISTER_PHONE_AGENT} element ={<Suspense fallback=""><MainLayout Child={<RegisterPhoneAgent/>}/></Suspense>}/>
-      <Route path={routes.REGISTER_AU_AGENT} element ={<Suspense fallback=""><MainLayout Child={<RegisterAuAgent/>}/></Suspense>}/>
 
       <Route path={routes.CALCULATOR_MATRIX} element ={<Suspense fallback=""><MainLayout Child={<CalculatorMatrix/>}/></Suspense>}/>
 

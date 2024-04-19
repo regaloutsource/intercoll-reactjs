@@ -14,3 +14,16 @@
     z-index: 3;
     margin-left: 1vw;
 }
+
+.login-header{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+}
+
+@media screen and (max-width:600px) {
+    .login-header {
+        flex-direction: row;
+    }
+    
+}

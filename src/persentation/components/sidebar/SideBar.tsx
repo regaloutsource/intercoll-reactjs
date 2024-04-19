@@ -1,5 +1,7 @@
 import * as React from 'react';
+
 import { styled, useTheme, Theme, CSSObject } from '@mui/material/styles';
+
 import Box from '@mui/material/Box';
 import MuiDrawer from '@mui/material/Drawer';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -8,10 +10,11 @@ import IconButton from '@mui/material/IconButton';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import ListItems from '../NavListItems/NavList';
-import { SideBarProps } from '../../../domain/interfaces/SideBarProps';
 
-
-
+interface ISideBar {
+  open: boolean;
+  handleDrawerClose:()=>void;
+}
 
 const drawerWidth = 240;
 const drawerWidthSmall =180;
@@ -70,7 +73,7 @@ const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' 
   }),
 );
 
-const SideBar:React.FC<SideBarProps>=(props)=> {
+const SideBar:React.FC<ISideBar>=(props)=> {
   const theme = useTheme();
   const {open,handleDrawerClose} = props
 
