@@ -96,6 +96,7 @@ const RegisterAgentForm: React.FC = () => {
         <TextField
           fullWidth
           color="primary"
+          size='small'
           type='password'
           name="password"
           label="Password"

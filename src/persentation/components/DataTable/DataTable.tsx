@@ -15,8 +15,11 @@ import Box from '@mui/material/Box'
 import Typography from '@mui/material/Typography'
 import Tooltip from '@mui/material/Tooltip'
 import useMediaQuery from '@mui/material/useMediaQuery'
+import Card from '@mui/material/Card';
 
 import DeleteIcon from '@mui/icons-material/Delete';
+import FileDownloadIcon from '@mui/icons-material/FileDownload';
+import PersonAddIcon from '@mui/icons-material/PersonAdd';
 
 
 import DialogBox from '../DialogBox/DialogBox'
@@ -138,9 +141,16 @@ const DataTable: React.FC<IdataTable> = ({title,dataTableHeader,data,enableRegis
   };
 
   return (
-    <Box component='div'>
+    <Card>
       <Box display='flex' justifyContent='space-between'>
-        <Typography variant='h6' fontWeight='bold'>{title}</Typography>
+        <Box display='flex' alignItems='center' mb={3}>
+        <Typography variant='h5' fontWeight='bold' mr={2}>{title}</Typography>
+        {enableRegister && <Tooltip title='Register Agent'>
+            <Button variant="text" size='small' onClick={handleRegModelOpen}>
+              <PersonAddIcon fontSize='medium'/>
+            </Button>
+          </Tooltip>}
+          </Box>
       <TextField
         label="Search"
         variant="outlined"
@@ -208,16 +218,17 @@ const DataTable: React.FC<IdataTable> = ({title,dataTableHeader,data,enableRegis
             <Button onClick={goToFirstPage} disabled={page === 0}>First</Button>
             <Button onClick={goToLastPage} disabled={page >= Math.ceil(filteredData.length / rowsPerPage) - 1}>Last</Button>
 </Box> */}
-      <Box display='flex' justifyContent='space-between'>
+        <Tooltip title='Download excel file '>
         <Button variant="contained" onClick={handleDownload}> 
-        <Typography variant='body1' textTransform='capitalize'>Download Table Content </Typography></Button>
-        {enableRegister && <Button variant="contained" onClick={handleRegModelOpen}>Register Agent</Button>}
-      </Box>
+           <FileDownloadIcon/>
+        </Button>
+        </Tooltip>
+  
       
       <DialogBox id={delId} fullScreen={fullScreen} open={openDeleteDialog} handleClose={handleDeleteDialogClose} title='Are you sure you want to delete this entry?' content={<Typography>This will be permanently deleted</Typography>} actionName='Delete' action={removeItem} />
 
       {enableRegister && <RegisterModal open={openRegModel} handleClose={handleRegModelClose} modelHeading={`Register ${title.split(' ')[0]} Agent`} />}
-    </Box>
+    </Card>
   );
 };
 
