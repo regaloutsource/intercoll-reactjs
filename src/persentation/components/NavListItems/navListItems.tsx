@@ -10,11 +10,23 @@ import AccountBoxIcon from '@mui/icons-material/AccountBox';
 
 import { routes } from '../../../routes/routes';
 
-export const NavListItem = [
+export type IsubCategory = {
+  name:string,
+  href:string
+}
+export type INavListItem = {
+  id: number,
+  name: string,
+  icon: JSX.Element | null,
+  href: string | null,
+  subCategory: Array<IsubCategory> | null
+}
+export const NavListItem : Array<INavListItem> = [
   {
     id: 1,
     name: 'Home',
     icon: <HomeIcon />,
+    href: null,
     subCategory: [
       {
         name: 'Daily Graphs',
@@ -40,6 +52,7 @@ export const NavListItem = [
     id: 2,
     name: 'Reports',
     icon: <AnalyticsIcon />,
+    href: null,
     subCategory: [
       {
         name: 'FieldAgents Report',
@@ -63,12 +76,14 @@ export const NavListItem = [
     id: 3,
     name: 'Bank Details',
     icon: <AccountBalanceIcon />,
-    href: routes.BANK_DETAILS
+    href: routes.BANK_DETAILS,
+    subCategory:null
   },
   {
     id: 4,
     name: 'Agents',
     icon: <AccountBoxIcon />,
+    href:null,
     subCategory: [
       {
         name: 'Field Agent',
@@ -87,6 +102,7 @@ export const NavListItem = [
     id: 5,
     name: 'Calculator',
     icon: <CalculateIcon />,
+    href: null,
     subCategory: [
       {
         name: 'Calculator Matrix',
@@ -105,12 +121,14 @@ export const NavListItem = [
     id: 6,
     name: 'Targets',
     icon: <AdsClickIcon />,
-    href: routes.TARGETS
+    href: routes.TARGETS,
+    subCategory: null,
   },
   {
     id: 7,
     name: "Manual DD's",
     icon: <AddBoxIcon />,
-    href:routes.MANUAL_DD
+    href:routes.MANUAL_DD,
+    subCategory:null
   },
 ];

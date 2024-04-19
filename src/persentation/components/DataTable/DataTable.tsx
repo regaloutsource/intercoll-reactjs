@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React from 'react';
+import { useState } from 'react';
 
 import Table from '@mui/material/Table'
 import TableContainer from '@mui/material/TableContainer'
@@ -89,7 +90,9 @@ const DataTable: React.FC<IdataTable> = ({title,dataTableHeader,data,enableRegis
 
   const handleChangeRowsPerPage = (event: React.ChangeEvent<HTMLInputElement>) => {
     const pageOption = parseInt(event.target.value, 10);
-    (pageOption === -1)?setRowsPerPage(tableData.length):setRowsPerPage(parseInt(event.target.value, 10));
+    if(pageOption === -1){ setRowsPerPage(tableData.length)} // when all option selected 
+    else {
+    setRowsPerPage(parseInt(event.target.value, 10));} 
     setPage(0);
   };
 
@@ -107,7 +110,7 @@ const DataTable: React.FC<IdataTable> = ({title,dataTableHeader,data,enableRegis
 
   const handleDownload = () => {
     const csvContent =  dataTableHeader.join(',') + '\n' +
-    data?.map(item => Object.values(item).join(',')).join('\n');
+    data?.map((item :String) => Object.values(item).join(',')).join('\n');
     const blob = new Blob([csvContent], { type: 'text/csv' });
     const url = URL.createObjectURL(blob);
     const link = document.createElement('a');
@@ -152,7 +155,7 @@ const DataTable: React.FC<IdataTable> = ({title,dataTableHeader,data,enableRegis
           <TableHead>
             <TableRow className='table-head'>
               <TableCell className='table-cell'>Actions</TableCell>
-             {dataTableHeader?.map((item,index) =><TableCell className='table-cell' key={index} >
+             {dataTableHeader?.map((item : String,index) =><TableCell className='table-cell' key={index} >
                   {item}  
               </TableCell>)}
             </TableRow>
@@ -164,7 +167,7 @@ const DataTable: React.FC<IdataTable> = ({title,dataTableHeader,data,enableRegis
               <Typography variant="subtitle1">No records found</Typography>
             </TableCell>
             </TableRow>
-            :filteredData.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)?.map((row,index) => (
+            :filteredData.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)?.map((row:Array<number | string>,index) => (
               <TableRow>
                 <TableCell>
                   <Tooltip title='Delete'>
@@ -180,7 +183,7 @@ const DataTable: React.FC<IdataTable> = ({title,dataTableHeader,data,enableRegis
                 </TableCell>
                 
 
-                {Object.values(row)?.map((val: any) => {
+                {Object.values(row)?.map((val:number|string) => {
                   return(
                   
                       <TableCell><Typography variant='body1'>{val}</Typography></TableCell>

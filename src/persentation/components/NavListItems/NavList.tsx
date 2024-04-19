@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
+import { useEffect, useState } from 'react';
 
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
@@ -18,6 +19,7 @@ import NavItem from './NavItem';
 import { NavLink } from 'react-router-dom';
 
 import { useTheme } from '@mui/material/styles'
+import {INavListItem,IsubCategory} from './navListItems'
 
 type IListItem = {
   open: boolean;
@@ -56,7 +58,7 @@ const ListItems: React.FC<IListItem> = ({ open }) => {
 
   return (
     <List className='subCategoryList'>
-      {NavListItem?.map((item,index) => (
+      {NavListItem?.map((item:INavListItem,index) => (
         <Box key={index}>
 
           {/* If the List Item does not have a subCategory, it behaves as a navLink */}
@@ -89,7 +91,7 @@ const ListItems: React.FC<IListItem> = ({ open }) => {
           {/* if the sidebar is opened */
           (expandedButton === item.id) && open && item.subCategory && (
           <List className=''>
-            {item.subCategory?.map((category,index) => (
+            {item.subCategory?.map((category:IsubCategory,index) => (
               <ListItem key={index} disablePadding>
                 <NavItem id={item.id} name={category.name} icon={null} href={category.href} open={open} handleNavLinkClick={handleNavLinkClick}/>
               </ListItem>
@@ -105,7 +107,7 @@ const ListItems: React.FC<IListItem> = ({ open }) => {
               open={openMenu}
               onClose={handleClose}
             >
-              {item.subCategory?.map((category,index) => (
+              {item.subCategory?.map((category:IsubCategory,index) => (
                 <MenuItem key={index} onClick={handleClose}>
                   {/*NavItem not working */}
                   <NavLink to={category.href} className='nav-menu-items' onClick={()=>handleNavLinkClick(item.id)}><Typography >{category.name} </Typography></NavLink> 
