@@ -15,7 +15,7 @@ const FilterAgentButtonGroup:React.FC = () => {
   return (
     <Box display='flex' sx={{marginX:'2em'}}>
        {
-        buttons.map((element,index)=>
+        buttons?.map((element,index)=>
         <Button key={index} 
         className={(index===selectedButton)?'selectedBtn':'btnGrp'}
         variant={(index===selectedButton)?'contained':'outlined'}

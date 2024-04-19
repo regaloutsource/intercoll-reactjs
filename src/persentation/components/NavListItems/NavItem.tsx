@@ -48,7 +48,7 @@ const NavItem: React.FC<INavItem> = (props) => {
         :<Tooltip title={name}>
                    <ListItemIcon sx={{ minWidth: 0, mr: open ? 3 : 'auto', justifyContent: 'center' }}> {icon} </ListItemIcon>
         </Tooltip>}
-        <ListItemText disableTypography primary={name} sx={{ opacity: open ? 1 : 0, fontSize: icon ? '1rem' : '0.75rem' }} />
+        <ListItemText disableTypography primary={name} sx={{ opacity: open ? 1 : 0, fontSize: icon ? '1vmax' : '0.75vmax' }} />
     </ListItemButton>
 }
 

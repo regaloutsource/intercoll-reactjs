@@ -107,7 +107,7 @@ const DataTable: React.FC<IdataTable> = ({title,dataTableHeader,data,enableRegis
 
   const handleDownload = () => {
     const csvContent =  dataTableHeader.join(',') + '\n' +
-    data.map(item => Object.values(item).join(',')).join('\n');
+    data?.map(item => Object.values(item).join(',')).join('\n');
     const blob = new Blob([csvContent], { type: 'text/csv' });
     const url = URL.createObjectURL(blob);
     const link = document.createElement('a');
@@ -119,8 +119,8 @@ const DataTable: React.FC<IdataTable> = ({title,dataTableHeader,data,enableRegis
 
   const removeItem = (index:number) => {
     handleDeleteDialogClose();
-    setTableData(tableData.filter((item,idx) => {
-      return idx!==index
+    setTableData(tableData.filter((item,index) => {
+      return index!==index
     }
   ))
   }
@@ -152,7 +152,7 @@ const DataTable: React.FC<IdataTable> = ({title,dataTableHeader,data,enableRegis
           <TableHead>
             <TableRow className='table-head'>
               <TableCell className='table-cell'>Actions</TableCell>
-             {dataTableHeader.map((item) =><TableCell className='table-cell' key={item} >
+             {dataTableHeader?.map((item,index) =><TableCell className='table-cell' key={index} >
                   {item}  
               </TableCell>)}
             </TableRow>
@@ -164,11 +164,11 @@ const DataTable: React.FC<IdataTable> = ({title,dataTableHeader,data,enableRegis
               <Typography variant="subtitle1">No records found</Typography>
             </TableCell>
             </TableRow>
-            :filteredData.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((row,idx) => (
+            :filteredData.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)?.map((row,index) => (
               <TableRow>
                 <TableCell>
                   <Tooltip title='Delete'>
-                    <Button onClick={() => handleDeleteDialogOpen(idx)}>
+                    <Button onClick={() => handleDeleteDialogOpen(index)}>
                       <DeleteIcon/>
                     </Button>
                   </Tooltip>
@@ -180,7 +180,7 @@ const DataTable: React.FC<IdataTable> = ({title,dataTableHeader,data,enableRegis
                 </TableCell>
                 
 
-                {Object.values(row).map((val: any) => {
+                {Object.values(row)?.map((val: any) => {
                   return(
                   
                       <TableCell><Typography variant='body1'>{val}</Typography></TableCell>

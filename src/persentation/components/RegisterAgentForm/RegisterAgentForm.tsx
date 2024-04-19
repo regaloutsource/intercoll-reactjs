@@ -53,7 +53,7 @@ const RegisterAgentForm: React.FC = () => {
           onChange={formik.handleChange}
           error={formik.touched.name && Boolean(formik.errors.name)}
           helperText={formik.touched.name && formik.errors.name}
-          sx={{ mb: '2em' , width:smallScreen?'100%':'60%'}}
+          sx={{ mb: '2rem' , width:smallScreen?'100%':'60%'}}
         />
         <TextField
           fullWidth
@@ -65,7 +65,7 @@ const RegisterAgentForm: React.FC = () => {
           onChange={formik.handleChange}
           error={formik.touched.opCode && Boolean(formik.errors.opCode)}
           helperText={formik.touched.opCode && formik.errors.opCode}
-          sx={{ mb: '2em' , width:smallScreen?'100%':'60%'}}
+          sx={{ mb: '2rem' , width:smallScreen?'100%':'60%'}}
         />
         <TextField
           fullWidth
@@ -78,7 +78,7 @@ const RegisterAgentForm: React.FC = () => {
           onChange={formik.handleChange}
           error={formik.touched.email && Boolean(formik.errors.email)}
           helperText={formik.touched.email && formik.errors.email}
-          sx={{ mb: '2em' , width:smallScreen?'100%':'60%'}}
+          sx={{ mb: '2rem' , width:smallScreen?'100%':'60%'}}
         />
         <TextField
           fullWidth
@@ -91,7 +91,7 @@ const RegisterAgentForm: React.FC = () => {
           onChange={formik.handleChange}
           error={formik.touched.leaderEmail && Boolean(formik.errors.leaderEmail)}
           helperText={formik.touched.leaderEmail && formik.errors.leaderEmail}
-          sx={{ mb: '2em' , width:smallScreen?'100%':'60%'}}
+          sx={{ mb: '2rem' , width:smallScreen?'100%':'60%'}}
         />
         <TextField
           fullWidth
@@ -103,7 +103,7 @@ const RegisterAgentForm: React.FC = () => {
           onChange={formik.handleChange}
           error={formik.touched.password && Boolean(formik.errors.password)}
           helperText={formik.touched.password && formik.errors.password}
-          sx={{ mb: '2em' , width:smallScreen?'100%':'60%'}}
+          sx={{ mb: '2rem' , width:smallScreen?'100%':'60%'}}
         />
 
         <Button type="submit" variant="contained">

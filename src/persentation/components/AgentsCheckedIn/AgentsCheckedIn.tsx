@@ -22,18 +22,18 @@ const AgentsCheckedIn: React.FC<IAgentsCheckedIn> = (props) => {
         <Card className='checkIn-list'>
             <Typography fontWeight='bold'>Agents Checked in</Typography>
             <List>
-            {agentArray.map((person, idx) =>
-            <React.Fragment key={idx}>
+            {agentArray?.map((person, index) =>
+            <React.Fragment key={index}>
              <ListItem className='listItem'>
                     <ListItemIcon sx={{ minWidth:'2rem'}}>
                         <PersonOutlineSharpIcon color='primary' fontSize='small'/>
                     </ListItemIcon>
                     <ListItemText
                         primary={person}
-                        sx={{fontSize:'xx-small'}}
+                        sx={{fontSize:'x-small'}}
                     />
                 </ListItem>
-                {(idx!==agentArray.length - 1)?<Divider/>:null}
+                {(index!==agentArray.length - 1)?<Divider/>:null}
             </React.Fragment> 
             )}
         </List>

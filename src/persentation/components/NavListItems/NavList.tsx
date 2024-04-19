@@ -56,8 +56,8 @@ const ListItems: React.FC<IListItem> = ({ open }) => {
 
   return (
     <List className='subCategoryList'>
-      {NavListItem.map((item) => (
-        <Box key={item.id}>
+      {NavListItem?.map((item,index) => (
+        <Box key={index}>
 
           {/* If the List Item does not have a subCategory, it behaves as a navLink */}
           <ListItem disablePadding sx={{ display: 'block' }} >
@@ -82,7 +82,7 @@ const ListItems: React.FC<IListItem> = ({ open }) => {
             :<Tooltip title={item.name}>
               <ListItemIcon sx={{ minWidth: 0, mr: open ? 3 : 'auto', justifyContent: 'center' }}>{item.icon}</ListItemIcon>
             </Tooltip>}
-            <ListItemText disableTypography primary={item.name} sx={{ opacity: open ? 1 : 0 ,fontSize:'1rem'}} />
+            <ListItemText disableTypography primary={item.name} sx={{ opacity: open ? 1 : 0 ,fontSize:'1vmax'}} />
           </ListItemButton>
           }
 
