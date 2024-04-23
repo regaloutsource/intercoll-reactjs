@@ -1,4 +1,5 @@
 export interface FieldAgentInterface {
+    id:string,
     name: string,
     opCode: string,
     email: string,
@@ -8,6 +9,7 @@ export interface FieldAgentInterface {
 }
 
 export interface PhoneAgentInterface {
+    id: string,
     name: string;
     opCode: string;
     email: string;

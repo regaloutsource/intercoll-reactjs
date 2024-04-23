@@ -1,4 +1,5 @@
 export interface FieldCustomerInterface {
+    id:string;
     customerId: number;
     opCode: string;
     amount: number;
@@ -41,6 +42,7 @@ export interface FieldCustomerInterface {
 
 
 export interface PhoneCustomerInterface {
+    id:string;
     customerId: number;
     opCode: string;
     amount: number;

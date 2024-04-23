@@ -1,13 +1,16 @@
 import React from 'react'
-import DataTable from '../../components/DataTable/DataTable'
+import DataTable from '../../components/DataGrid/CustomDataGrid'
+import { FieldCustomerInterface } from 'src/domain/interfaces/AgentDetailsInterface';
+import { GridColDef } from '@mui/x-data-grid/models/colDef/gridColDef';
 
 function getCustomer(
+    id:string,
     customerId: number,
     opCode: string,
     amount: number,
     paymentMode: string,
     frequency: string,
-    date: string,
+    date: Date,
     time: string,
     nopServed: string | null,
     rsl: string | null,
@@ -40,7 +43,8 @@ function getCustomer(
     repl: string | null,
     estateNum: string | null,
     attachment: string | null,) {
-    const obj = {
+    const obj:FieldCustomerInterface = {
+        id:id,
         customerId: customerId,
         opCode: opCode,
         amount: amount,
@@ -82,20 +86,65 @@ function getCustomer(
     }
     return obj;
 }
-const dt = new Date().toLocaleDateString();
-const obj1 = getCustomer(1,'Ak',200,'Direct Debit','Weekly',dt,'23:10','Y',null,null,null,'Y','Y',null,null,'Y',null,null,null,'Y','Y',null,null,'Y',null,null,null,'Y','Y',null,null,'Y',null,null,null,'Y','Y',null);
-const obj2 = getCustomer(2,'VJ',10000,'Direct Debit','Montly',dt,'13:00','Y','Y','Y',null,'Y','Y','Y',null,'Y',null,null,null,'Y','Y',null,null,'Y',null,null,null,'Y','Y',null,null,'Y',null,null,null,'Y','Y',null);
-const obj3 = getCustomer(3,'Ak',500,'Direct Debit','Weekly',dt,'10:30','Y',null,null,'Y',null,'Y',null,null,'Y',null,null,null,'Y','Y',null,null,'Y',null,null,null,'Y','Y',null,null,'Y',null,null,null,'Y','Y',null);
-const obj4 = getCustomer(4,'GT',500,'Direct Debit','Weekly',dt,'10:30','Y',null,null,'Y',null,'Y',null,null,'Y',null,null,null,'Y','Y',null,null,'Y',null,null,null,'Y','Y',null,null,'Y',null,null,null,'Y','Y',null);
-const obj5 = getCustomer(5,'RR',500,'Direct Debit','Weekly',dt,'10:30','Y',null,null,'Y',null,'Y',null,null,'Y',null,null,null,'Y','Y',null,null,'Y',null,null,null,'Y','Y',null,null,'Y',null,null,null,'Y','Y',null);
+const dt = new Date();
+const obj1 = getCustomer('1',1,'Ak',200,'Direct Debit','Weekly',dt,'23:10','Y',null,null,null,'Y','Y',null,null,'Y',null,null,null,'Y','Y',null,null,'Y',null,null,null,'Y','Y',null,null,'Y',null,null,null,'Y','Y',null);
+const obj2 = getCustomer('2',2,'VJ',10000,'Direct Debit','Montly',dt,'13:00','Y','Y','Y',null,'Y','Y','Y',null,'Y',null,null,null,'Y','Y',null,null,'Y',null,null,null,'Y','Y',null,null,'Y',null,null,null,'Y','Y',null);
+const obj3 = getCustomer('3',3,'Ak',500,'Direct Debit','Weekly',dt,'10:30','Y',null,null,'Y',null,'Y',null,null,'Y',null,null,null,'Y','Y',null,null,'Y',null,null,null,'Y','Y',null,null,'Y',null,null,null,'Y','Y',null);
+const obj4 = getCustomer('4',4,'GT',500,'Direct Debit','Weekly',dt,'10:30','Y',null,null,'Y',null,'Y',null,null,'Y',null,null,null,'Y','Y',null,null,'Y',null,null,null,'Y','Y',null,null,'Y',null,null,null,'Y','Y',null);
+const obj5 = getCustomer('5',5,'RR',500,'Direct Debit','Weekly',dt,'10:30','Y',null,null,'Y',null,'Y',null,null,'Y',null,null,null,'Y','Y',null,null,'Y',null,null,null,'Y','Y',null,null,'Y',null,null,null,'Y','Y',null);
 
 const objArr = [obj1,obj2,obj3,obj4,obj5]
 
-const header = ['Customer ID', 'OP Code', 'Amount', 'Payment Mode', 'Frequency', 'Date', 'Time', 'NOP Served', 'RSL', 'GNA', 'On Winz', 'EFS', 'PFS', 'Escalate', 'DTR Unknown','Revist','No One Home','Business Card','Veda','SWD','SwO','Inbound Call','Outbound call','New Details','AGW','LMTC','NFI','CX','Details Conf','FB Message','SS','EXE','FBTVA','Doc','FBTVC','REPL','EstateNum','Attachment']
+const header:GridColDef[] =[
+{field: 'customerId', headerName: 'Customer ID',type:'number'},
+{field: 'opCode', headerName: 'OP Code'}, 
+{field: 'amount', headerName: 'Amount',type:'number'}, 
+{field: 'paymentMode', headerName: 'Payment Mode'}, 
+{field: 'frequency', headerName: 'Frequency'}, 
+{field: 'date', headerName: 'Date',type:'date'}, 
+{field: 'time', headerName: 'Time'},
+{field: 'nopServed', headerName: 'NOP Served'},
+{field: 'rsl', headerName: 'RSL'},
+{field: 'gna', headerName: 'GNA'},
+{field: 'onWinz', headerName: 'On Winz'},
+{field: 'efs', headerName: 'EFS'},
+{field: 'pfs', headerName: 'PFS'},
+{field: 'escalate', headerName: 'Escalate'},
+{field: 'dtrUnknown', headerName: 'DTR Unknown'},
+{field: 'revist', headerName: 'Revist'},
+{field: 'noOneHome', headerName: 'No One Home'},
+{field: 'businessCard', headerName: 'Business Card'},
+{field: 'veda', headerName: 'Veda'},
+{field: 'swd', headerName: 'SWD'},
+{field: 'swo', headerName: 'SwO'},
+{field: 'inboundCall', headerName: 'Inbound Call'},
+{field: 'outboundCall', headerName: 'Outbound call'},
+{field: 'newDetails', headerName: 'New Details'},
+{field: 'agw', headerName: 'AGW'},
+{field: 'lmtc', headerName: 'LMTC'},
+{field: 'nfi', headerName: 'NFI'},
+{field: 'cx', headerName: 'CX'},
+{field: 'detailsConf', headerName: 'Details Conf'},
+{field: 'fbMessage', headerName: 'FB Message'},
+{field: 'ss', headerName: 'SS'},
+{field: 'exe', headerName: 'EXE'},
+{field: 'fbtva', headerName: 'FBTVA'},
+{field: 'doc', headerName: 'Doc'},
+{field: 'fbtvc', headerName: 'FBTVC'},
+{field: 'repl', headerName: 'REPL'},
+{field: 'estateNum', headerName: 'EstateNum'}, 
+{field: 'attachment', headerName: 'Attachment'},
+]
+
 
 const FieldAgentReport = () => {
     return (
-        <DataTable title='Field Agent Report' dataTableHeader={header} data={objArr}/>
+        <DataTable
+         title='Field Agent Report' 
+         headers={header} 
+         data={objArr}
+         enableDelete={true}
+        />
     )
 }
 

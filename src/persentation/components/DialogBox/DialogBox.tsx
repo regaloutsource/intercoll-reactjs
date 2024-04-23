@@ -5,10 +5,11 @@ import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
+import { GridRowId } from '@mui/x-data-grid';
 
 
 type Idialog = {
-  id: number
+  id: GridRowId
   fullScreen: boolean,
   open: boolean,
   title: string,
@@ -16,7 +17,7 @@ type Idialog = {
   handleClose: ()=>void,
   actionName: string
   // action: ((id: number) => void) | ((id: string) => void);
-  action: (id: number) =>void
+  action: (id: GridRowId) =>void
 }
 
 const ResponsiveDialog:React.FC<Idialog> = (props) => {

@@ -1,0 +1,16 @@
+/* .data-grid :first-child :first-child :first-child :first-child {
+    background-color: lightgray !important;
+    text-wrap: nowrap !important;
+    font-weight: 700 !important;
+} */
+
+.row-head{
+    background-color: lightgray !important;
+    font-weight: bolder !important;
+    font-size: medium;
+}
+
+.data-grid {
+    font-size: small;
+}
+

@@ -13,7 +13,10 @@
     "isolatedModules": true,
     "noEmit": true,
     "jsx": "react-jsx",
-
+    "baseUrl": "./",
+    "paths": {
+      "@mui/x-data-grid/*": ["node_modules/@mui/x-data-grid/*"]
+    },
     /* Linting */
     "strict": true,
     "noUnusedLocals": true,
