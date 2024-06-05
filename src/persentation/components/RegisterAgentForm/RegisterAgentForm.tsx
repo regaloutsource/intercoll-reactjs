@@ -11,36 +11,58 @@ import useTheme from '@mui/material/styles/useTheme';
 
 import './registerForm.css'
 
+import { IRegisterAgent } from '../../../domain/interfaces/gql/RegisterAgentInterface';
 
-type IRegisterAgentForm = {
-    onSubmit: () => void;
+export interface RegisterAgentInput {
+  name: string
+  email: string
+  opcode:string
+  leaderEmail:string
+  password:string
+  role:number
+  countryCode: string
 }
 
 
-const RegisterAgentForm: React.FC = () => {
+type IRegisterAgentForm = {
+  handleRegisterAgent: (input:IRegisterAgent) => Promise<void>
+  handleClose: () => void
+}
 
-    const theme = useTheme();
-    const smallScreen = useMediaQuery(theme.breakpoints.down('sm'));
+const RegisterAgentForm: React.FC<IRegisterAgentForm> = ({handleRegisterAgent,handleClose}) => {
 
+  const theme = useTheme();
+  const smallScreen = useMediaQuery(theme.breakpoints.down('sm'));
+
+  
+    
   const formik = useFormik({
     initialValues: {
       name: '',
-      opCode: '',
+      opcode: '',
       email: '',
       leaderEmail: '',
       password: '',
     },
     validationSchema: Yup.object({
       name: Yup.string().required('Name is required'),
-      opCode: Yup.string().required('OP Code is required'),
+      opcode: Yup.string().required('OP Code is required'),
       email: Yup.string().email().required('Email is required'),
       leaderEmail: Yup.string().email().required('Leader Email is required'),
       password: Yup.string().required('Password is required'),
     }),
-    onSubmit: async (values) => {
-          console.log(values)
-    },
-  });
+    onSubmit: async (values: Pick<RegisterAgentInput,'name' | 'email' |'opcode'|'leaderEmail'|'password'>) => {
+            const input:IRegisterAgent ={
+              name:values.name,
+              email:values.email ,
+              opcode:values.opcode ,
+              leaderEmail:values.leaderEmail ,
+              password:values.password
+            } 
+            await handleRegisterAgent(input);
+
+            handleClose();
+    }});
 
   return (
       <form className='form-wrapper' onSubmit={formik.handleSubmit}>
@@ -59,12 +81,12 @@ const RegisterAgentForm: React.FC = () => {
           fullWidth
           size="small"
           color="primary"
-          name="opCode"
+          name="opcode"
           label="OP Code"
-          value={formik.values.opCode}
+          value={formik.values.opcode}
           onChange={formik.handleChange}
-          error={formik.touched.opCode && Boolean(formik.errors.opCode)}
-          helperText={formik.touched.opCode && formik.errors.opCode}
+          error={formik.touched.opcode && Boolean(formik.errors.opcode)}
+          helperText={formik.touched.opcode && formik.errors.opcode}
           sx={{ mb: '2rem' , width:smallScreen?'100%':'60%'}}
         />
         <TextField

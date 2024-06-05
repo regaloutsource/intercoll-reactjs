@@ -2,9 +2,6 @@ import React, { Suspense } from 'react'
 import { Routes, Route } from 'react-router'
 import { routes } from './routes'
 import NoPage from '../persentation/pages/NoPage/NoPage'
-import Dashboard from '../persentation/pages/dashboard/Dashboard'
-import DashboardMontly from '../persentation/pages/dashboard/DashboardMontly'
-
 
 const AppRoutes = () => {
 
@@ -15,8 +12,8 @@ const AppRoutes = () => {
     
     const MainLayout = React.lazy(() => import('../persentation/layout/mainLayout/MainLayout'))
     
-    //const Dashboard = React.lazy(() => import('../persentation/pages/dashboard/Dashboard') )
-    const MontlyDashboard = React.lazy(() => import('../persentation/pages/dashboard/DashboardMontly'))
+    const Dashboard = React.lazy(() => import('../persentation/pages/dashboard/Dashboard') )
+    const DashboardMontly = React.lazy(() => import('../persentation/pages/dashboard/DashboardMontly'))
 
     //reports
     const FieldAgentReport = React.lazy(() => import('../persentation/pages/Reports/FieldAgentReport'))

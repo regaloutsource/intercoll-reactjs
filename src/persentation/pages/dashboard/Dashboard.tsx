@@ -88,7 +88,7 @@ const Dashboard: React.FC = () => {
         </Grid>
 
         <Grid item xs={12} sm={12} md={12} lg={3}>
-          <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }} justifyContent='center' alignItems='flex-start'>
+          <Grid container rowSpacing={1} m={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }} justifyContent='center' alignItems='flex-start'>
             <AgentAttendanceCard />
             <Grid item xs={6} sm={6} md={6} lg={12}><DoughnutChart size={30} data={paymentChartData} options={paymentChartOptions} /></Grid>
             <Grid item xs={6} sm={6} md={6} lg={12}><DoughnutChart size={30} data={dtrGnaChartData} options={dtrChartOptions} /></Grid>

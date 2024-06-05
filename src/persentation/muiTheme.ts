@@ -36,7 +36,7 @@ const theme = createTheme({
     },
     body1: {
       fontFamily: 'Martel Sans', 
-      fontSize: '0.8vmax'
+      fontSize:"clamp(0.8vmax, 12px, 18px) "
     },
   },
   components: {

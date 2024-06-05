@@ -72,7 +72,7 @@ const generateSampleData = (): FieldCustomerInterface[] => {
 const data = generateSampleData();
 
 
-const AUFieldAgentReport = () => {
+const AUFieldAgentReport:React.FC = () => {
   return (
     <DataTable 
       title='AU Field Agent Report' 

@@ -9,15 +9,15 @@ import Box from '@mui/material/Box'
 
 
 
-const DashboardMontly = () => {
+const DashboardMontly:React.FC = () => {
   return (
     <>
   <LineChart size={50} data={mtdGnaChartData} options={mtdGnaChartOptions}/>
   <BarChart size={50} data={ddChartData} options={ddChartOptions} />
   <LineChart size={50} data={monthToDateChartData} options={monthToDateChartOptions}/>
   <Box display='flex' justifyContent='space-between' alignContent='stretch'>
-    <BarChart size={30} data={mtdCollectedChartData} options={mtdCollectedChartOptions}/>
-    <DoughnutChart size={30} data={monthPieChartData} options={monthPieChartOptions}/>
+  <BarChart size={30} data={mtdCollectedChartData} options={mtdCollectedChartOptions}/>
+  <DoughnutChart size={30} data={monthPieChartData} options={monthPieChartOptions}/>
   </Box>
 </>
   )

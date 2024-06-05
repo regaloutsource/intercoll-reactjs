@@ -2,6 +2,12 @@ import React from 'react';
 
 import DataTable from '../../components/DataGrid/CustomDataGrid';
 import { GridColDef } from '@mui/x-data-grid/models/colDef/gridColDef';
+import Box from '@mui/material/Box';
+import Button from '@mui/material/Button';
+
+import RegisterModal from '../../components/RegisterModel/RegisterModel';
+import RegisterDdForm from '../../components/RegisterDdForm/RegisterDdForm';
+
 
 const header:GridColDef[] = [
  { field:"dd", headerName:"DD's"},
@@ -19,15 +25,27 @@ const sampleData = [
 
 
 
-const ManualDdTable = () => {
+const ManualDdTable:React.FC = () => {
+  const [openModel, setOpenModel] = React.useState(false);
+  const handleModelOpen = () => {
+    setOpenModel(true);
+  };
+
+  const handleModelClose = () => {
+    setOpenModel(false);
+  };
   return (
-    <DataTable 
-      title='Direct Debits' 
-      headers={header} 
-      data={sampleData}
-      enableEdit={true}
-      enableDelete={true}
+    <Box>
+      <Button variant='contained' onClick={handleModelOpen} sx={{my:2}}>Add Manual DD</Button>
+      <DataTable 
+        title='Direct Debits' 
+        headers={header} 
+        data={sampleData}
+        enableEdit={true}
+        enableDelete={true}
     />
+    <RegisterModal open={openModel} handleClose={handleModelClose} modelHeading="Add Manual DD's" child={<RegisterDdForm/>} />
+    </Box>
   )
 }
 

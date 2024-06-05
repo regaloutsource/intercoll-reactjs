@@ -5,12 +5,12 @@ import { GridColDef } from '@mui/x-data-grid/models/colDef/gridColDef';
 
 
 const header: GridColDef[] = [
-  { field: 'customerId', headerName: 'Customer ID',type:'string' },
-  { field: 'opCode', headerName: 'Op Code',type:'string' },
-  { field: 'amount', headerName: 'Amount',type:'number' },
-  { field: 'dd', headerName: 'DD',type:'number' },
-  { field: 'date', headerName: 'Date',type:'date' },
-  { field: 'time', headerName: 'Time',type:'dateTime' },
+  { field: 'customerId', headerName: 'Customer ID',type:'string',flex: 1 },
+  { field: 'opCode', headerName: 'Op Code',type:'string',flex: 1 },
+  { field: 'amount', headerName: 'Amount',type:'number',flex: 2 },
+  { field: 'dd', headerName: 'DD',type:'number',flex: 2 },
+  { field: 'date', headerName: 'Date',type:'date',flex: 2 },
+  { field: 'time', headerName: 'Time',type:'dateTime',flex: 2 },
 ];
 let objArr : Array<PhoneCustomerInterface>= [
     {
@@ -33,7 +33,7 @@ let objArr : Array<PhoneCustomerInterface>= [
     },
 ];
 
-const AUPhoneAgentReport = () => {
+const AUPhoneAgentReport:React.FC = () => {
   return (
     <DataTable
      title='AU Phone Agent Report'

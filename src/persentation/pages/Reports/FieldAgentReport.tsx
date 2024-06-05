@@ -137,7 +137,7 @@ const header:GridColDef[] =[
 ]
 
 
-const FieldAgentReport = () => {
+const FieldAgentReport:React.FC = () => {
     return (
         <DataTable
          title='Field Agent Report' 

@@ -29,7 +29,7 @@ import {
 } from '@mui/x-data-grid';
 
 import MuiPagination from '@mui/material/Pagination';
-import { PaginationProps } from '@mui/material/Pagination';
+//import { PaginationProps } from '@mui/material/Pagination';
 import styled from '@mui/material/styles/styled';
 import useTheme from '@mui/material/styles/useTheme';
 
@@ -46,10 +46,12 @@ import LastPageIcon from '@mui/icons-material/LastPage';
 
 import DialogBox from '../DialogBox/DialogBox';
 import RegisterModal from '../RegisterModel/RegisterModel';
+import RegisterAgentForm from '../RegisterAgentForm/RegisterAgentForm';
 //import DataGrid from '@mui/x-data-grid/DataGrid';
 
 import './customDataGrid.css'
 import { TablePaginationProps } from '@mui/material';
+import { IRegisterAgent } from '../../../domain/interfaces/gql/RegisterAgentInterface';
 
 interface IdataTable {
   title: string,
@@ -58,6 +60,9 @@ interface IdataTable {
   enableAdd?: boolean;
   enableDelete?: boolean;
   enableEdit?: boolean;
+  onAdd?: (input:IRegisterAgent) => Promise<void>;
+  onDelete?: () => void;
+  onEdit?: () => void;
 }
 
 const StyledGridOverlay = styled('div')(({ theme }) => ({
@@ -134,7 +139,10 @@ function CustomNoRowsOverlay() {
 
 const adjustCol = (arr: GridColDef[], isEditable: boolean): GridColDef[] => {
   arr.forEach((item) => {
-    item['width'] = 200;
+    if(arr.length >= 10){
+          item['width'] = 200;
+    }
+ 
     item['headerClassName'] = 'row-head';
     if (isEditable) item['editable'] = true;
   })
@@ -142,7 +150,7 @@ const adjustCol = (arr: GridColDef[], isEditable: boolean): GridColDef[] => {
 }
 
 
-const DataTable: React.FC<IdataTable> = ({ title, headers, data, enableAdd = false, enableDelete = false, enableEdit = false }) => {
+const DataTable: React.FC<IdataTable> = ({ title, headers, data, enableAdd = false, enableDelete = false, enableEdit = false, onAdd }) => {
   const [rows, setRows] = useState<GridRowsProp>(data);
   const [rowModesModel, setRowModesModel] = useState<GridRowModesModel>({});
   const [searchTerm, setSearchTerm] = useState<string>('');
@@ -221,6 +229,7 @@ const DataTable: React.FC<IdataTable> = ({ title, headers, data, enableAdd = fal
   };
 
   const handleRegModelClose = () => {
+    console.log("Hello");
     setOpenRegModel(false);
   };
 
@@ -262,7 +271,6 @@ const DataTable: React.FC<IdataTable> = ({ title, headers, data, enableAdd = fal
   };
 
   // const dataGridRef = useRef<any>(null);
-
   // const clearFilters = () => {
   //   if (dataGridRef.current) {
   //       dataGridRef.current.exportDataAsCsv('Yoho');
@@ -371,12 +379,9 @@ const DataTable: React.FC<IdataTable> = ({ title, headers, data, enableAdd = fal
       />
       <DialogBox id={delId} fullScreen={fullScreen} open={openDeleteDialog} handleClose={handleDeleteDialogClose} title='Are you sure you want to delete this entry?' content={<Typography>This will be permanently deleted</Typography>} actionName='Delete' action={handleDeleteClick} />
 
-      {enableAdd && <RegisterModal open={openRegModel} handleClose={handleRegModelClose} modelHeading={`Register ${title.split(' ')[0]} Agent`} />}
+      {enableAdd && <RegisterModal open={openRegModel} handleClose={handleRegModelClose} modelHeading={`Register ${title.split(' ')[0]} Agent`} child={<RegisterAgentForm handleRegisterAgent={onAdd!} handleClose={handleRegModelClose} />}/>}
     </Card>
   );
-}
+} 
 
 export default DataTable;
-
-
-

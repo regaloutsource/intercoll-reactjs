@@ -1,5 +1,4 @@
-import React
- from 'react';
+import React from 'react';
 import { NavLink as RouterLink } from 'react-router-dom';
 
 import ListItemButton from '@mui/material/ListItemButton';

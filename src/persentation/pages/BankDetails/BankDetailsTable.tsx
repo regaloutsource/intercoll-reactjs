@@ -8,13 +8,13 @@ type bankDetailsProp = {
     fileName:string
 }
 const header:GridColDef[] = [
-  {field:'date' , headerName:'Date'},
-  {field:'time' , headerName:'Time'},
-  {field:'string' , headerName:'File Name'}
+  {field:'date' , headerName:'Date',flex:1},
+  {field:'time' , headerName:'Time',flex:1},
+  {field:'string' , headerName:'File Name',flex:1}
 ];
 const sampleData:Array<bankDetailsProp> = []
 
-const BankDetailsTable = () => {
+const BankDetailsTable:React.FC = () => {
   return (
     <DataTable 
       title={'Bank Details'} 

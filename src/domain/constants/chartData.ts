@@ -341,14 +341,16 @@ export const paymentChartData = {
     maintainAspectRatio: false,
     indexAxis: 'y' as const,
     responsive: true,
-    scales: {
-      x: {
-        beginAtZero: true,
-        ticks: {
-          callback: (value: number) => `$${value}`,
-        },
-      },
-    },
+    // scales: {
+    //   linear: {
+    //     options : {
+    //       beginAtZero: true,
+    //       ticks: {
+    //         callback: (value: number) => `$${value}`,
+    //       },
+    //     }
+    //   },
+    // },
     plugins: {
       legend: {
         position: 'top' as const,

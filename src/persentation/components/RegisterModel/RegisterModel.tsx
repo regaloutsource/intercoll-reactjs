@@ -2,7 +2,7 @@ import * as React from 'react';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
-import RegisterAgentForm from '../RegisterAgentForm/RegisterAgentForm';
+
 
 const style = {
   position: 'absolute' as 'absolute',
@@ -20,11 +20,12 @@ type IregistrationModel = {
   modelHeading: string,
   open:boolean,
   handleClose: ()=>void,
+  child: JSX.Element,
 }
 
 const RegisterModal:React.FC<IregistrationModel> = (props) => {
 
-  const {open,handleClose,modelHeading} = props
+  const {open,handleClose,modelHeading,child} = props
   return (
       <Modal
         open={open}
@@ -37,7 +38,7 @@ const RegisterModal:React.FC<IregistrationModel> = (props) => {
             {modelHeading}
           </Typography>
           <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-            <RegisterAgentForm />
+            {child}
           </Typography>
         </Box>
       </Modal>

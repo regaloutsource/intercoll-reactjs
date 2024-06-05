@@ -4,11 +4,11 @@ import { GridColDef } from '@mui/x-data-grid/models/colDef/gridColDef';
 
 const header:GridColDef[] = [
 {field:'frequency' ,headerName:'Frequency'},
-{field:'minDebt' ,headerName:'Debt Range Min (in $)',type:'number'},
-{field:'maxDebt' ,headerName:'Debt Range Max (in $)',type:'number'},
-{field:'approvedAmt' ,headerName:'Approved Amount (in $)',type:'number'},
-{field:'minAcceptAmt' ,headerName:'Min Accept Amount (in $)',type:'number'},
-{field:'declinedLL' ,headerName:'Declined Lower Level(in $)',type:'number'}
+{field:'minDebt' ,headerName:'Debt Range Min (in $)',type:'number',flex:1},
+{field:'maxDebt' ,headerName:'Debt Range Max (in $)',type:'number',flex:1},
+{field:'approvedAmt' ,headerName:'Approved Amount (in $)',type:'number',flex:1},
+{field:'minAcceptAmt' ,headerName:'Min Accept Amount (in $)',type:'number',flex:1},
+{field:'declinedLL' ,headerName:'Declined Lower Level(in $)',type:'number',flex:1}
 ]
 
 const data = [
@@ -23,7 +23,7 @@ const data = [
     }
 ]
 
-const CalculatorMatrix = () => {
+const CalculatorMatrix:React.FC = () => {
   return (
     <DataTable 
       title='Calculator Matrix' 
