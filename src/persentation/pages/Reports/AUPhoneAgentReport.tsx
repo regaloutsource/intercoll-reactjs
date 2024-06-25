@@ -1,16 +1,16 @@
 import React from 'react'
 import { PhoneCustomerInterface } from '../../../domain/interfaces/AgentDetailsInterface';
-import DataTable from '../../components/DataGrid/CustomDataGrid';
+import DataTable from '../../hoc/DataGrid/CustomDataGrid';
 import { GridColDef } from '@mui/x-data-grid/models/colDef/gridColDef';
 
 
 const header: GridColDef[] = [
-  { field: 'customerId', headerName: 'Customer ID',type:'string',flex: 1 },
-  { field: 'opCode', headerName: 'Op Code',type:'string',flex: 1 },
-  { field: 'amount', headerName: 'Amount',type:'number',flex: 2 },
-  { field: 'dd', headerName: 'DD',type:'number',flex: 2 },
-  { field: 'date', headerName: 'Date',type:'date',flex: 2 },
-  { field: 'time', headerName: 'Time',type:'dateTime',flex: 2 },
+  { field: 'customerId', headerName: 'Customer ID',type:'string',flex: 1 ,headerAlign:'center',align:'center' },
+  { field: 'opCode', headerName: 'Op Code',type:'string',flex: 1 ,headerAlign:'center',align:'center' },
+  { field: 'amount', headerName: 'Amount',type:'number',flex: 2 ,headerAlign:'center',align:'center' },
+  { field: 'dd', headerName: 'DD',type:'number',flex: 2 ,headerAlign:'center',align:'center' },
+  { field: 'date', headerName: 'Date',type:'date',flex: 2 ,headerAlign:'center',align:'center' },
+  { field: 'time', headerName: 'Time',type:'string',flex: 2 ,headerAlign:'center',align:'center' },
 ];
 let objArr : Array<PhoneCustomerInterface>= [
     {

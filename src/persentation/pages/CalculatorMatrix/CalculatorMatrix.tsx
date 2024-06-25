@@ -1,5 +1,5 @@
 import React from 'react'
-import DataTable from '../../components/DataGrid/CustomDataGrid'
+import DataTable from '../../hoc/DataGrid/CustomDataGrid'
 import { GridColDef } from '@mui/x-data-grid/models/colDef/gridColDef';
 
 const header:GridColDef[] = [

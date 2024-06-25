@@ -1,23 +1,23 @@
 import React from 'react';
 import { FieldAgentInterface } from '../../../domain/interfaces/AgentsInterface';
-import DataTable from '../../components/DataGrid/CustomDataGrid';
+import DataTable from '../../hoc/DataGrid/CustomDataGrid';
 import { GridColDef } from '@mui/x-data-grid/models/colDef/gridColDef';
 
-import SnackbarAlert from '../../components/Alerts/SnackbarAlert';
+import SnackbarAlert from '../../hoc/Alerts/SnackbarAlert';
 import { useMutation, useQuery } from '@apollo/client';
 import { AgentFilterInput, IRegisterAgent } from '../../../domain/interfaces/gql/RegisterAgentInterface';
 import { AlertState } from '../../../domain/interfaces/AlertStateInterface'
 import { GET_ALL_AGENTS } from '../../../data/ApiRequest/queries';
-import { REGISTER_AGENT } from '../../../data/ApiRequest/mutations';
+import { DELETE_AGENT, EDIT_AGENT, REGISTER_AGENT } from '../../../data/ApiRequest/mutations';
 
 
 const header: GridColDef[] = [
-  { field: 'name', headerName: 'Name' ,flex:2 },
-  { field: 'opCode', headerName: 'Op Code',flex:1 },
-  { field: 'email', headerName: 'Email',flex:3 },
-  { field: 'leaderEmail', headerName: 'Leader Email',flex:3 },
-  { field: 'appVersion', headerName: 'App Version',flex:2 },
-  { field: 'device', headerName: 'Device',flex:2 },
+  { field: 'name', headerName: 'Name' ,flex:2, headerAlign:'center',align:'center' },
+  { field: 'opCode', headerName: 'Op Code',flex:1, headerAlign:'center',align:'center' },
+  { field: 'email', headerName: 'Email',flex:3, headerAlign:'center',align:'center' },
+  { field: 'leaderEmail', headerName: 'Leader Email',flex:3, headerAlign:'center',align:'center' },
+  { field: 'appVersion', headerName: 'App Version',flex:2, headerAlign:'center',align:'center' },
+  { field: 'device', headerName: 'Device',flex:2, headerAlign:'center',align:'center' },
 ];
 
 const AuFieldAgentDetails:React.FC = () => {
@@ -43,6 +43,8 @@ const AuFieldAgentDetails:React.FC = () => {
   }))??[]; 
 
   const [registerFieldAgentMutation] = useMutation(REGISTER_AGENT);
+  const [deleteAgentMutation] = useMutation(DELETE_AGENT)
+  const [editAgentMutation] = useMutation(EDIT_AGENT)
   const [alert, setAlert] = React.useState<AlertState>({ open: false, message: "" })
   const handleRegisterAgent = async (input:IRegisterAgent) => {
     try{
@@ -69,6 +71,25 @@ const AuFieldAgentDetails:React.FC = () => {
     setAlert({open:false,message:'',severity:'error'})
   }
 
+  const onDelete = async (id: any) => {
+    try {
+      await deleteAgentMutation(id);
+      setAlert({open:true,message:'Deleted Successfully',severity:'success'})
+    } catch (error:any) {
+      setAlert({open:true,message:error,severity:'error'})
+    }
+    
+  }
+
+  const onEdit = async (updateData:any) => {
+    try {
+      await editAgentMutation(updateData)
+      setAlert({open:true,message:'Updated Successfully',severity:'success'})
+    } catch (error:any) {
+      setAlert({open:true,message:error,severity:'error'})
+    }
+  }
+
   return (
     <>
       <DataTable
@@ -79,6 +100,8 @@ const AuFieldAgentDetails:React.FC = () => {
       enableDelete={true}
       enableEdit={true}
       onAdd={handleRegisterAgent}
+      onDelete={onDelete}
+      onEdit={onEdit}
       />
       <SnackbarAlert open={alert.open} message={alert.message} handleClose={handleClose} severity={alert.severity!} />
     </>

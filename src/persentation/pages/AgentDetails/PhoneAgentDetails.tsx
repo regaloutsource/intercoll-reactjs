@@ -1,10 +1,10 @@
 import React from 'react'
 
-import DataTable from '../../components/DataGrid/CustomDataGrid';
+import DataTable from '../../hoc/DataGrid/CustomDataGrid';
 import { PhoneAgentInterface } from '../../../domain/interfaces/AgentsInterface';
 import { GridColDef } from '@mui/x-data-grid/models/colDef/gridColDef';
 
-import SnackbarAlert from '../../components/Alerts/SnackbarAlert';
+import SnackbarAlert from '../../hoc/Alerts/SnackbarAlert';
 import { useMutation, useQuery } from '@apollo/client';
 import { AgentFilterInput, IRegisterAgent } from '../../../domain/interfaces/gql/RegisterAgentInterface';
 import { AlertState } from '../../../domain/interfaces/AlertStateInterface'
@@ -12,10 +12,10 @@ import { GET_ALL_AGENTS } from '../../../data/ApiRequest/queries';
 import { REGISTER_AGENT } from '../../../data/ApiRequest/mutations';
 
 const header: GridColDef[] = [
-  { field: 'name', headerName: 'Name',flex:2 },
-  { field: 'opCode', headerName: 'Op Code',flex:1 },
-  { field: 'email', headerName: 'Email',flex:3 },
-  { field: 'leaderEmail', headerName: 'Leader Email',flex:3 },
+  { field: 'name', headerName: 'Name',flex:2, headerAlign:'center',align:'center' },
+  { field: 'opCode', headerName: 'Op Code',flex:1, headerAlign:'center',align:'center' },
+  { field: 'email', headerName: 'Email',flex:3, headerAlign:'center',align:'center' },
+  { field: 'leaderEmail', headerName: 'Leader Email',flex:3, headerAlign:'center',align:'center' },
 ];
 
 

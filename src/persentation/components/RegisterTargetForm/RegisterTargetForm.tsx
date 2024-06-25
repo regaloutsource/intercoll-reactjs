@@ -12,15 +12,15 @@ import useTheme from '@mui/material/styles/useTheme';
 
 
 
-// type IRegisterTargetForm = {
-//     onSubmit: () => void;
-// }
+type IRegisterTargetForm = {
+    onSubmit: (props:any) => Promise<void>;
+}
 
 
-const RegisterTargetForm: React.FC = () => {
+const RegisterTargetForm: React.FC<IRegisterTargetForm> = ({onSubmit}) => {
 
-    const theme = useTheme();
-    const smallScreen = useMediaQuery(theme.breakpoints.down('sm'));
+  const theme = useTheme();
+  const smallScreen = useMediaQuery(theme.breakpoints.down('sm'));
 
   const formik = useFormik({
     initialValues: {
@@ -31,9 +31,14 @@ const RegisterTargetForm: React.FC = () => {
       target: Yup.number().required('DD Id  is required'),
       date: Yup.date().required('Date is required'),
     }),
-    onSubmit: async (values) => {
-          console.log(values)
-    },
+    onSubmit: async (values) =>{
+      const input ={
+        target: values.target,
+        date: values.date
+      }
+
+      await onSubmit(input);
+    }
   });
 
   return (

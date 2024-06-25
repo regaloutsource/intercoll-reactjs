@@ -10,12 +10,12 @@ import useMediaQuery from '@mui/material/useMediaQuery';
 import useTheme from '@mui/material/styles/useTheme';
 
 
-// type IRegisterDdForm = {
-//     onSubmit: () => void;
-// }
+type IRegisterDdForm = {
+    onSubmit: (props: any) => Promise<void>;
+}
 
 
-const RegisterDdForm: React.FC = () => {
+const RegisterDdForm: React.FC<IRegisterDdForm> = ({onSubmit}) => {
 
     const theme = useTheme();
     const smallScreen = useMediaQuery(theme.breakpoints.down('sm'));
@@ -30,8 +30,12 @@ const RegisterDdForm: React.FC = () => {
       date: Yup.date().required('Date is required'),
     }),
     onSubmit: async (values) => {
-          console.log(values)
-    },
+          const input = {
+            dds: values.dd,
+            date: values.date,
+          }
+          await onSubmit(input)
+    }
   });
 
   return (

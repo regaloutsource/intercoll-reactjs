@@ -45,7 +45,7 @@ import LastPageIcon from '@mui/icons-material/LastPage';
 
 
 import DialogBox from '../DialogBox/DialogBox';
-import RegisterModal from '../RegisterModel/RegisterModel';
+import RegisterModal from '../../components/RegisterModel/RegisterModel';
 import RegisterAgentForm from '../RegisterAgentForm/RegisterAgentForm';
 //import DataGrid from '@mui/x-data-grid/DataGrid';
 
@@ -61,8 +61,8 @@ interface IdataTable {
   enableDelete?: boolean;
   enableEdit?: boolean;
   onAdd?: (input:IRegisterAgent) => Promise<void>;
-  onDelete?: () => void;
-  onEdit?: () => void;
+  onDelete?: (id:any) => Promise<void>;
+  onEdit?: (data:any) => void;
 }
 
 const StyledGridOverlay = styled('div')(({ theme }) => ({
@@ -139,7 +139,7 @@ function CustomNoRowsOverlay() {
 
 const adjustCol = (arr: GridColDef[], isEditable: boolean): GridColDef[] => {
   arr.forEach((item) => {
-    if(arr.length >= 10){
+    if(arr.length > 10){
           item['width'] = 200;
     }
  
@@ -150,7 +150,7 @@ const adjustCol = (arr: GridColDef[], isEditable: boolean): GridColDef[] => {
 }
 
 
-const DataTable: React.FC<IdataTable> = ({ title, headers, data, enableAdd = false, enableDelete = false, enableEdit = false, onAdd }) => {
+const DataTable: React.FC<IdataTable> = ({ title, headers, data, enableAdd = false, enableDelete = false, enableEdit = false, onAdd ,onDelete,onEdit}) => {
   const [rows, setRows] = useState<GridRowsProp>(data);
   const [rowModesModel, setRowModesModel] = useState<GridRowModesModel>({});
   const [searchTerm, setSearchTerm] = useState<string>('');
@@ -240,11 +240,17 @@ const DataTable: React.FC<IdataTable> = ({ title, headers, data, enableAdd = fal
   };
 
   const handleSaveClick = (id: GridRowId) => () => {
-    setRowModesModel({ ...rowModesModel, [id]: { mode: GridRowModes.View } });
+    setRowModesModel((prevModel) => ({
+      ...prevModel,
+      [id]: { mode: GridRowModes.View },
+    }));
+    
   };
 
+
   const handleDeleteClick = (id: GridRowId) => {
-    setRows(rows.filter((row) => row.id !== id));
+    if(onDelete)
+      onDelete(id).then(() => setRows(rows.filter((row) => row.id !== id))).catch(() => {})
     handleDeleteDialogClose();
   };
 
@@ -254,7 +260,7 @@ const DataTable: React.FC<IdataTable> = ({ title, headers, data, enableAdd = fal
       [id]: { mode: GridRowModes.View, ignoreModifications: true },
     });
 
-    const editedRow = rows.find((row) => row.id === id);
+  const editedRow = rows.find((row) => row.id === id);
     if (editedRow!.isNew) {
       setRows(rows.filter((row) => row.id !== id));
     }
@@ -263,6 +269,9 @@ const DataTable: React.FC<IdataTable> = ({ title, headers, data, enableAdd = fal
   const processRowUpdate = (newRow: GridRowModel) => {
     const updatedRow = { ...newRow, isNew: false };
     setRows(rows.map((row) => (row.id === newRow.id ? updatedRow : row)));
+    if (onEdit) {
+      onEdit(updatedRow);
+    }
     return updatedRow;
   };
 

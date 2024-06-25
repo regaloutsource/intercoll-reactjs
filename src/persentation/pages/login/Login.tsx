@@ -20,7 +20,7 @@ import { routes } from '../../../routes/routes'
 import { loginFailure,loginSuccess } from '../../../redux/slices/auth.slice';
 import { useDispatch } from 'react-redux';
 
-import SnackbarAlert from '../../components/Alerts/SnackbarAlert';
+import SnackbarAlert from '../../hoc/Alerts/SnackbarAlert';
 
 const LOGIN_MUTATION = gql`
   mutation Login($username: String!, $password: String!) {

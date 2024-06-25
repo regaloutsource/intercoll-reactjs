@@ -17,4 +17,4 @@ export interface IAgentDetails extends AgentDetails{
 export interface AgentFilterInput {
     countryCode:string,
     roleId: number,
-  }
+}
